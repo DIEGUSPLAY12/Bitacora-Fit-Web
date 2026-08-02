@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import SmoothScroll from "@/components/ui/SmoothScroll";
+import NoiseOverlay from "@/components/ui/NoiseOverlay";
 import "./globals.css";
 
 const inter = Inter({
@@ -30,8 +32,9 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html lang="es" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-background text-foreground">
-        {children}
+      <body className="min-h-full flex flex-col bg-background text-foreground relative selection:bg-accent selection:text-background">
+        <NoiseOverlay />
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

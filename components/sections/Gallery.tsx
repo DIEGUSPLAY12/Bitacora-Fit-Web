@@ -1,10 +1,11 @@
 "use client";
 
-import { useRef, useCallback, useEffect } from "react";
+import { useRef, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion, AnimatePresence } from "motion/react";
 import { BASE_PATH } from "@/lib/constants";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
@@ -14,33 +15,37 @@ const SCREENSHOTS = [
   {
     src: `${BASE_PATH}/screenshots/login.png`,
     alt: "Pantalla de inicio de sesión con acceso rápido a la app",
+    imageClassName: "object-contain object-center",
   },
   {
     src: `${BASE_PATH}/screenshots/home.png`,
     alt: "Pantalla de inicio con racha de entrenos y accesos rápidos",
+    imageClassName: "object-cover object-center",
   },
   {
     src: `${BASE_PATH}/screenshots/entrenar.png`,
     alt: "Registro de ejercicio con peso, series y repeticiones",
+    imageClassName: "object-contain object-center scale-[0.95]",
   },
   {
     src: `${BASE_PATH}/screenshots/historial.png`,
     alt: "Historial de entrenamientos con volumen total por sesión",
+    imageClassName: "object-cover object-center",
   },
   {
     src: `${BASE_PATH}/screenshots/perfil.png`,
     alt: "Perfil del usuario con estadísticas y configuración",
+    imageClassName: "object-cover object-center",
   },
 ];
 
 const IMG_WIDTH = 487;
 const IMG_HEIGHT = 1105;
-const SCROLL_AMOUNT = 300;
 
 export default function Gallery() {
   const sectionRef = useRef<HTMLElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
   const reducedMotion = usePrefersReducedMotion();
+  const [activeIndex, setActiveIndex] = useState(1);
 
   // ── Scroll reveal ───────────────────────────────────────
   useEffect(() => {
@@ -73,95 +78,179 @@ export default function Gallery() {
   }, [reducedMotion]);
 
   // ── Carousel controls ───────────────────────────────────
-  const scroll = useCallback((direction: "left" | "right") => {
-    const track = trackRef.current;
-    if (!track) return;
-    const delta = direction === "left" ? -SCROLL_AMOUNT : SCROLL_AMOUNT;
-    track.scrollBy({ left: delta, behavior: "smooth" });
+  const handleNext = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % SCREENSHOTS.length);
+  }, []);
+
+  const handlePrev = useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + SCREENSHOTS.length) % SCREENSHOTS.length);
   }, []);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLDivElement>) => {
       if (e.key === "ArrowLeft") {
         e.preventDefault();
-        scroll("left");
+        handlePrev();
       } else if (e.key === "ArrowRight") {
         e.preventDefault();
-        scroll("right");
+        handleNext();
       }
     },
-    [scroll],
+    [handleNext, handlePrev],
   );
 
   return (
     <section
       ref={sectionRef}
       id="galeria"
-      className="py-section-mobile md:py-section-desktop"
+      className="py-section-mobile md:py-section-desktop overflow-hidden"
     >
-      <div className="mx-auto max-w-6xl px-5">
+      <div className="mx-auto max-w-6xl px-5 relative z-10">
         {/* ── Encabezado ─────────────────────────────── */}
-        <h2 className="text-2xl md:text-[1.75rem] font-bold text-foreground">
+        <h2 className="text-2xl md:text-[1.75rem] font-bold tracking-tight text-balance text-foreground">
           Así se ve
         </h2>
         <p className="mt-2 mb-10 md:mb-14 text-sm text-muted">
           Un vistazo rápido a la app
         </p>
 
-        {/* ── Carrusel ───────────────────────────────── */}
-        <div className="relative">
-          {/* Flechas (solo puntero) */}
+        {/* ── Carrusel Coverflow ───────────────────────────────── */}
+        <div className="relative w-full max-w-5xl mx-auto">
+          {/* Flechas de Navegación */}
           <button
             type="button"
-            onClick={() => scroll("left")}
+            onClick={handlePrev}
             aria-label="Captura anterior"
-            className="hidden md:flex absolute -left-5 top-1/2 -translate-y-1/2 z-10 size-10 items-center justify-center rounded-full bg-surface text-foreground transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 z-20 size-12 items-center justify-center rounded-full bg-surface/80 backdrop-blur-md text-foreground transition-all hover:scale-110 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent shadow-xl border border-white/10"
           >
-            <ChevronLeft className="size-5" />
+            <ChevronLeft className="size-6" />
           </button>
 
           <button
             type="button"
-            onClick={() => scroll("right")}
+            onClick={handleNext}
             aria-label="Captura siguiente"
-            className="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-10 size-10 items-center justify-center rounded-full bg-surface text-foreground transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 z-20 size-12 items-center justify-center rounded-full bg-surface/80 backdrop-blur-md text-foreground transition-all hover:scale-110 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent shadow-xl border border-white/10"
           >
-            <ChevronRight className="size-5" />
+            <ChevronRight className="size-6" />
           </button>
 
-          {/* Track */}
+          {/* Contenedor de las tarjetas */}
           <div
-            ref={trackRef}
-            role="region"
-            aria-label="Capturas de pantalla de Bitácora Fit"
+            className="relative w-full h-[550px] md:h-[650px] flex items-center justify-center outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-[32px]"
             tabIndex={0}
             onKeyDown={handleKeyDown}
-            className={[
-              "flex gap-4 overflow-x-auto",
-              "snap-x snap-mandatory md:snap-none",
-              "scrollbar-none",
-              "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent",
-              "rounded-lg",
-            ].join(" ")}
+            aria-label="Galería interactiva de capturas de pantalla"
           >
-            {SCREENSHOTS.map((shot, index) => (
-              <div
-                key={shot.src}
-                className={[
-                  "shrink-0 snap-center",
-                  "w-[80vw] max-w-[220px] md:w-auto md:max-w-none md:flex-1",
-                  "rounded-[24px] border border-[#2A2A2A] overflow-hidden",
-                ].join(" ")}
-              >
-                <Image
-                  src={shot.src}
-                  alt={shot.alt}
-                  width={IMG_WIDTH}
-                  height={IMG_HEIGHT}
-                  priority={index < 2}
-                  className="block w-full h-auto"
-                />
-              </div>
+            <AnimatePresence initial={false}>
+              {SCREENSHOTS.map((shot, index) => {
+                // Cálculo de posición circular
+                let offset = index - activeIndex;
+                if (offset < -2) offset += SCREENSHOTS.length;
+                if (offset > 2) offset -= SCREENSHOTS.length;
+
+                const isCenter = offset === 0;
+                const isLeft = offset === -1;
+                const isRight = offset === 1;
+
+                let state = "hiddenRight";
+                if (isCenter) state = "center";
+                else if (isLeft) state = "left";
+                else if (isRight) state = "right";
+                else if (offset < 0) state = "hiddenLeft";
+
+                const variants = {
+                  center: {
+                    x: "-50%",
+                    y: "-50%",
+                    scale: 1,
+                    opacity: 1,
+                    zIndex: 10,
+                    filter: reducedMotion ? "none" : "blur(0px)",
+                  },
+                  left: {
+                    x: "-130%",
+                    y: "-50%",
+                    scale: 0.8,
+                    opacity: 0.4,
+                    zIndex: 5,
+                    filter: reducedMotion ? "none" : "blur(4px)",
+                  },
+                  right: {
+                    x: "30%",
+                    y: "-50%",
+                    scale: 0.8,
+                    opacity: 0.4,
+                    zIndex: 5,
+                    filter: reducedMotion ? "none" : "blur(4px)",
+                  },
+                  hiddenLeft: {
+                    x: "-180%",
+                    y: "-50%",
+                    scale: 0.6,
+                    opacity: 0,
+                    zIndex: 1,
+                    filter: reducedMotion ? "none" : "blur(8px)",
+                  },
+                  hiddenRight: {
+                    x: "80%",
+                    y: "-50%",
+                    scale: 0.6,
+                    opacity: 0,
+                    zIndex: 1,
+                    filter: reducedMotion ? "none" : "blur(8px)",
+                  },
+                };
+
+                return (
+                  <motion.div
+                    key={shot.src}
+                    initial={false}
+                    animate={state}
+                    variants={variants}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                      mass: 0.8,
+                    }}
+                    onClick={() => {
+                      if (isLeft) handlePrev();
+                      if (isRight) handleNext();
+                    }}
+                    className={[
+                      "absolute top-1/2 left-1/2",
+                      "w-[70vw] max-w-[260px] md:max-w-[300px]",
+                      "aspect-[487/1105]",
+                      "bg-[#121212] rounded-[24px] border border-white/10 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.7)] overflow-hidden",
+                      isCenter ? "cursor-default" : "cursor-pointer",
+                    ].join(" ")}
+                  >
+                    <Image
+                      src={shot.src}
+                      alt={shot.alt}
+                      width={IMG_WIDTH}
+                      height={IMG_HEIGHT}
+                      priority={isCenter || isLeft || isRight}
+                      className={`block w-full h-full pointer-events-none ${shot.imageClassName || "object-cover object-center"}`}
+                    />
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+          
+          {/* Indicadores móviles */}
+          <div className="flex md:hidden justify-center gap-2 mt-4">
+            {SCREENSHOTS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveIndex(i)}
+                className={`size-2 rounded-full transition-colors ${
+                  i === activeIndex ? "bg-accent" : "bg-surface"
+                }`}
+                aria-label={`Ir a la captura ${i + 1}`}
+              />
             ))}
           </div>
         </div>

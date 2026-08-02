@@ -45,8 +45,8 @@ export default function Features() {
       id="funciones"
       className="py-section-mobile md:py-section-desktop"
     >
-      <div className="mx-auto max-w-6xl px-5">
-        <h2 className="text-2xl md:text-[1.75rem] font-bold text-foreground mb-10 md:mb-14">
+      <div className="mx-auto max-w-6xl px-5 relative z-10">
+        <h2 className="text-2xl md:text-[1.75rem] font-bold tracking-tight text-balance text-foreground mb-10 md:mb-14">
           Qué puedes hacer con Bitácora Fit
         </h2>
 

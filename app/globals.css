@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* ── Color palette ────────────────────────────────────── */
+  --color-background: #121212;
+  --color-surface: #1E1E1E;
+  --color-foreground: #F5F5F5;
+  --color-muted: #A3A3A3;
+  --color-accent: #B4F03C;
+
+  /* ── Border radius ────────────────────────────────────── */
+  --radius-card: 16px;
+  --radius-button: 8px;
+
+  /* ── Typography – font family ─────────────────────────── */
+  --font-sans: var(--font-inter);
+
+  /* ── Spacing extras ───────────────────────────────────── */
+  --spacing-section-mobile: 24px;
+  --spacing-section-desktop: 64px;
+}
+
+/* ── Base resets ──────────────────────────────────────────── */
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ── Smooth scroll ───────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}

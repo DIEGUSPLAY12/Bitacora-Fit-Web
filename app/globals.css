@@ -31,3 +31,12 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* ── Hide scrollbar (carousel) ───────────────────────────── */
+.scrollbar-none {
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE / Edge legacy */
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;                  /* Chrome / Safari */
+}

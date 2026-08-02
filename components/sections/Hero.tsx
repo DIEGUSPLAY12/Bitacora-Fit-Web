@@ -1,4 +1,6 @@
+import Image from "next/image";
 import DownloadButton from "@/components/ui/DownloadButton";
+import { BASE_PATH } from "@/lib/constants";
 
 export default function Hero() {
   return (
@@ -23,14 +25,18 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* ── Mockup placeholder ────────────────────── */}
+          {/* ── Mockup ────────────────────────────────── */}
           <div className="flex-1 flex justify-center md:justify-end">
-            <div
-              className="w-full max-w-[280px] rounded-card bg-surface"
-              style={{ aspectRatio: "9 / 19.5" }}
-              aria-label="Captura de pantalla de la app Bitácora Fit (próximamente)"
-              role="img"
-            />
+            <div className="w-full max-w-[280px] rounded-[24px] border border-[#2A2A2A] overflow-hidden">
+              <Image
+                src={`${BASE_PATH}/screenshots/home.png`}
+                alt="Pantalla de inicio de Bitácora Fit con racha de entrenos y accesos rápidos"
+                width={487}
+                height={1105}
+                priority
+                className="block w-full h-auto"
+              />
+            </div>
           </div>
         </div>
       </div>

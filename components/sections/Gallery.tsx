@@ -1,9 +1,14 @@
 "use client";
 
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BASE_PATH } from "@/lib/constants";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const SCREENSHOTS = [
   {
@@ -33,8 +38,41 @@ const IMG_HEIGHT = 1105;
 const SCROLL_AMOUNT = 300;
 
 export default function Gallery() {
+  const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = usePrefersReducedMotion();
 
+  // ── Scroll reveal ───────────────────────────────────────
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    if (reducedMotion) {
+      gsap.set(el, { opacity: 1, y: 0 });
+      return;
+    }
+
+    gsap.set(el, { opacity: 0, y: 24 });
+
+    const tween = gsap.to(el, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+    });
+
+    return () => {
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
+  }, [reducedMotion]);
+
+  // ── Carousel controls ───────────────────────────────────
   const scroll = useCallback((direction: "left" | "right") => {
     const track = trackRef.current;
     if (!track) return;
@@ -57,6 +95,7 @@ export default function Gallery() {
 
   return (
     <section
+      ref={sectionRef}
       id="galeria"
       className="py-section-mobile md:py-section-desktop"
     >
@@ -100,12 +139,12 @@ export default function Gallery() {
             className={[
               "flex gap-4 overflow-x-auto",
               "snap-x snap-mandatory md:snap-none",
-              "scrollbar-none",                     
+              "scrollbar-none",
               "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent",
               "rounded-lg",
             ].join(" ")}
           >
-            {SCREENSHOTS.map((shot) => (
+            {SCREENSHOTS.map((shot, index) => (
               <div
                 key={shot.src}
                 className={[
@@ -119,6 +158,7 @@ export default function Gallery() {
                   alt={shot.alt}
                   width={IMG_WIDTH}
                   height={IMG_HEIGHT}
+                  priority={index < 2}
                   className="block w-full h-auto"
                 />
               </div>

@@ -1,17 +1,29 @@
-import type { LucideIcon } from "lucide-react";
+"use client";
+
+import { motion } from "motion/react";
+import type { ReactNode } from "react";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 interface FeatureCardProps {
-  icon: LucideIcon;
+  icon: ReactNode;
   title: string;
   description: string;
 }
 
-export default function FeatureCard({ icon: Icon, title, description }: FeatureCardProps) {
+const hoverSpring = { type: "spring" as const, stiffness: 300, damping: 20 };
+
+export default function FeatureCard({ icon, title, description }: FeatureCardProps) {
+  const reducedMotion = usePrefersReducedMotion();
+
   return (
-    <article className="flex flex-col gap-4 rounded-card bg-surface p-7 transition-transform duration-300 ease-out hover:-translate-y-1">
-      <Icon className="size-8 text-accent" strokeWidth={2} aria-hidden />
+    <motion.article
+      whileHover={reducedMotion ? { opacity: 0.9 } : { y: -4 }}
+      transition={hoverSpring}
+      className="flex flex-col gap-4 rounded-card bg-surface p-7"
+    >
+      {icon}
       <h3 className="text-base font-semibold text-foreground">{title}</h3>
       <p className="text-sm leading-relaxed text-muted">{description}</p>
-    </article>
+    </motion.article>
   );
 }

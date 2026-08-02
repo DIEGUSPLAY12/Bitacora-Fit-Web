@@ -1,5 +1,9 @@
+"use client";
+
 import { Dumbbell, Flame, Timer, History } from "lucide-react";
 import FeatureCard from "@/components/ui/FeatureCard";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 const FEATURES = [
   {
@@ -28,8 +32,16 @@ const FEATURES = [
 ] as const;
 
 export default function Features() {
+  const reducedMotion = usePrefersReducedMotion();
+  const sectionRef = useScrollReveal<HTMLElement>({
+    staggerSelector: "[data-feature-card]",
+    staggerDelay: 0.1,
+    reducedMotion,
+  });
+
   return (
     <section
+      ref={sectionRef}
       id="funciones"
       className="py-section-mobile md:py-section-desktop"
     >
@@ -39,14 +51,18 @@ export default function Features() {
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          {FEATURES.map((feature) => (
-            <FeatureCard
-              key={feature.title}
-              icon={feature.icon}
-              title={feature.title}
-              description={feature.description}
-            />
-          ))}
+          {FEATURES.map((feature) => {
+            const Icon = feature.icon;
+            return (
+              <div key={feature.title} data-feature-card>
+                <FeatureCard
+                  icon={<Icon className="size-8 text-accent" strokeWidth={2} aria-hidden />}
+                  title={feature.title}
+                  description={feature.description}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -5,11 +5,21 @@ export default function Footer() {
 
   return (
     <footer className="mt-auto border-t border-surface">
-      <div className="mx-auto max-w-6xl px-5 py-10 flex flex-col-reverse sm:flex-row items-center justify-between gap-6">
-        <p className="text-sm text-muted text-center sm:text-left">
-          © {currentYear} Bitácora Fit. Todos los derechos reservados.
-        </p>
-        <DownloadButton />
+      <div className="mx-auto max-w-6xl px-5 py-10 md:py-14 flex flex-col md:flex-row items-center md:items-start justify-between gap-8 md:gap-6">
+        <div className="flex flex-col items-center md:items-start gap-2">
+          <span className="text-lg font-bold tracking-tight text-foreground">
+            Bitácora Fit
+          </span>
+          <p className="text-sm text-muted text-center md:text-left">
+            App en desarrollo activo — más funciones próximamente
+          </p>
+          <p className="text-sm text-muted mt-4 md:mt-2">
+            © {currentYear} Bitácora Fit.
+          </p>
+        </div>
+        <div className="flex justify-center md:justify-end">
+          <DownloadButton />
+        </div>
       </div>
     </footer>
   );

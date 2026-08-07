@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { Dumbbell, Flame, Timer, History } from "lucide-react";
 import FeatureCard from "@/components/ui/FeatureCard";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -32,17 +33,23 @@ const FEATURES = [
 ] as const;
 
 export default function Features() {
+  const containerRef = useRef<HTMLElement>(null);
   const reducedMotion = usePrefersReducedMotion();
-  const sectionRef = useScrollReveal<HTMLElement>({
+  
+  useScrollReveal({
+    ref: containerRef,
+    yOffset: 60,
+    duration: 1,
+    ease: "power3.out",
+    reducedMotion,
     staggerSelector: "[data-feature-card]",
     staggerDelay: 0.1,
-    reducedMotion,
   });
 
   return (
     <section
-      ref={sectionRef}
-      id="funciones"
+      id="features"
+      ref={containerRef}
       className="py-section-mobile md:py-section-desktop"
     >
       <div className="mx-auto max-w-6xl px-5 relative z-10">

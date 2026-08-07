@@ -1,0 +1,103 @@
+"use client";
+
+import { motion } from "motion/react";
+import { CheckCircle2, XCircle } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+
+export default function Comparison() {
+  const reducedMotion = usePrefersReducedMotion();
+  const sectionRef = useScrollReveal<HTMLElement>({
+    yOffset: 40,
+    duration: 1,
+    ease: "power3.out",
+    reducedMotion
+  });
+
+  return (
+    <section id="comparison" ref={sectionRef} className="py-20 md:py-32 px-5">
+      <div className="mx-auto w-full max-w-5xl">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-[2.5rem] font-bold tracking-tight text-foreground mb-4">
+            El problema vs La solución
+          </h2>
+          <p className="text-lg text-muted max-w-2xl mx-auto">
+            Deja atrás el caos de las aplicaciones de notas y da el salto a un sistema diseñado exclusivamente para progresar.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          
+          {/* Tarjeta Problema (Otras apps/Notas) */}
+          <motion.div 
+            initial={reducedMotion ? { opacity: 1 } : { opacity: 0, x: -20 }}
+            whileInView={reducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="rounded-[32px] border border-white/5 bg-surface/30 p-8 md:p-10 relative overflow-hidden flex flex-col"
+          >
+            {/* Gradiente Rojo/Oscuro sutil de fondo */}
+            <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent pointer-events-none" />
+            
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold text-white/60 mb-8 flex items-center gap-3">
+                <XCircle className="size-6 text-red-400/50" />
+                El método antiguo
+              </h3>
+              
+              <ul className="space-y-6">
+                {[
+                  "Notas caóticas y desordenadas",
+                  "No recuerdas qué peso usaste la semana pasada",
+                  "Pierdes tiempo calculando el volumen total",
+                  "Te distraes con notificaciones de otras apps sociales",
+                  "Dependes de tener buena cobertura en el gimnasio"
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-4 text-muted">
+                    <span className="text-red-400/50 text-xl leading-none mt-1">×</span>
+                    <span className="text-lg leading-snug">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+
+          {/* Tarjeta Solución (Bitácora Fit) */}
+          <motion.div 
+            initial={reducedMotion ? { opacity: 1 } : { opacity: 0, x: 20 }}
+            whileInView={reducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="rounded-[32px] border border-accent/20 bg-surface/80 p-8 md:p-10 relative overflow-hidden flex flex-col shadow-[0_0_50px_-12px_rgba(180,240,60,0.1)]"
+          >
+            {/* Gradiente Verde/Brillante de fondo */}
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent pointer-events-none" />
+            
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold text-foreground mb-8 flex items-center gap-3">
+                <CheckCircle2 className="size-6 text-accent" />
+                Bitácora Fit
+              </h3>
+              
+              <ul className="space-y-6">
+                {[
+                  "Interfaz ultra-rápida y a un solo toque",
+                  "Historial inmediato de cada ejercicio",
+                  "Gráficas automáticas de tu progreso real",
+                  "Cero distracciones sociales. Solo tú y el hierro",
+                  "Funciona 100% offline sin problemas"
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-4 text-foreground">
+                    <CheckCircle2 className="size-6 text-accent shrink-0" />
+                    <span className="text-lg font-medium leading-snug">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -49,7 +49,7 @@ export default function ProgressChartSection() {
             La motivación real viene de ver cómo superas tus marcas. Bitácora Fit transforma tu esfuerzo en métricas tangibles y récords personales irrefutables.
           </p>
           
-          <div className="flex flex-col gap-6 w-full max-w-sm">
+          <div className="flex flex-col gap-6 w-max mx-auto lg:mx-0">
             {[
               { num: "01", text: "Registra el tonelaje total" },
               { num: "02", text: "Observa la gráfica subir" },

@@ -15,14 +15,20 @@ export default function Comparison() {
   });
 
   return (
-    <section id="comparison" ref={sectionRef} className="py-20 md:py-32 px-5 bg-surface/30 border-y border-white/5">
-      <div className="mx-auto w-full max-w-5xl">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-[2.5rem] font-bold tracking-tight text-foreground mb-4">
+    <section id="comparison" ref={sectionRef} className="py-24 md:py-40 px-5 bg-surface/30 border-y border-white/5 relative overflow-hidden">
+      {/* Luz difusa de fondo */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[300px] bg-accent/5 blur-[120px] rounded-[100%] pointer-events-none -z-10" aria-hidden />
+
+      <div className="mx-auto w-full max-w-5xl relative z-10">
+        <div className="text-center mb-20 md:mb-24 flex flex-col items-center">
+          <div className="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold text-muted bg-white/5 mb-6 border border-white/10">
+            Cambio de paradigma
+          </div>
+          <h2 className="text-[2rem] md:text-[3.5rem] leading-[1.1] font-bold tracking-tight text-foreground mb-6 text-balance">
             El problema vs La solución
           </h2>
-          <p className="text-lg text-muted max-w-2xl mx-auto">
-            Deja atrás el caos de las aplicaciones de notas y da el salto a un sistema diseñado exclusivamente para progresar.
+          <p className="text-lg md:text-xl text-muted/90 max-w-2xl mx-auto leading-relaxed text-balance">
+            Deja atrás el caos de las aplicaciones de notas genéricas y da el salto a un sistema diseñado exclusivamente para el alto rendimiento.
           </p>
         </div>
 

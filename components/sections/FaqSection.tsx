@@ -37,14 +37,20 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faq" ref={sectionRef} className="py-16 md:py-24 px-5 bg-surface/30 border-y border-white/5">
-      <div className="mx-auto w-full max-w-3xl">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-[2.5rem] font-bold tracking-tight text-foreground mb-4">
+    <section id="faq" ref={sectionRef} className="py-24 md:py-40 px-5 bg-background relative overflow-hidden">
+      {/* Luz difusa superior */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[300px] bg-white/[0.02] blur-[120px] rounded-[100%] pointer-events-none -z-10" aria-hidden />
+
+      <div className="mx-auto w-full max-w-3xl relative z-10">
+        <div className="text-center mb-16 md:mb-24 flex flex-col items-center">
+          <div className="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold text-muted bg-white/5 mb-6 border border-white/10">
+            Soporte & Dudas
+          </div>
+          <h2 className="text-[2.5rem] md:text-[3.5rem] leading-[1.1] font-bold tracking-tight text-foreground mb-6 text-balance">
             Preguntas Frecuentes
           </h2>
-          <p className="text-lg text-muted">
-            Todo lo que necesitas saber sobre Bitácora Fit.
+          <p className="text-lg md:text-xl text-muted/90 max-w-xl mx-auto leading-relaxed text-balance">
+            Todo lo que necesitas saber sobre Bitácora Fit antes de dar el paso.
           </p>
         </div>
 
@@ -57,55 +63,63 @@ export default function FaqSection() {
                 key={index}
                 initial={false}
                 animate={{
-                  backgroundColor: isOpen ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.02)",
-                  borderColor: isOpen ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.05)",
+                  backgroundColor: isOpen ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.01)",
                 }}
-                transition={{ duration: 0.3 }}
-                className="rounded-2xl border overflow-hidden"
+                transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+                className="p-1 md:p-1.5 bg-white/[0.02] border border-white/5 rounded-[1.5rem] shadow-lg"
               >
-                <button
-                  onClick={() => toggleAccordion(index)}
-                  className="w-full flex items-center justify-between p-6 md:p-8 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-2xl"
-                  aria-expanded={isOpen}
-                >
-                  <span className="text-lg md:text-xl font-semibold text-foreground pr-8">
-                    {faq.question}
-                  </span>
-                  
-                  <motion.div
-                    animate={{ rotate: isOpen ? 45 : 0 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                    className="flex-shrink-0 flex items-center justify-center size-8 rounded-full bg-white/5"
+                {/* Inner Core (Double-Bezel) */}
+                <div className={`rounded-[calc(1.5rem-0.375rem)] border transition-colors duration-500 ${
+                  isOpen ? "bg-surface/50 border-white/10" : "bg-transparent border-transparent hover:bg-white/[0.02]"
+                }`}>
+                  <button
+                    onClick={() => toggleAccordion(index)}
+                    className="w-full flex items-center justify-between p-5 md:p-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-[calc(1.5rem-0.375rem)]"
+                    aria-expanded={isOpen}
                   >
-                    <Plus className="size-5 text-accent" />
-                  </motion.div>
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isOpen && (
+                    <span className={`text-lg md:text-xl font-semibold transition-colors duration-300 pr-8 ${
+                      isOpen ? "text-foreground" : "text-muted"
+                    }`}>
+                      {faq.question}
+                    </span>
+                    
                     <motion.div
-                      initial="collapsed"
-                      animate="open"
-                      exit="collapsed"
-                      variants={{
-                        open: { opacity: 1, height: "auto" },
-                        collapsed: { opacity: 0, height: 0 }
+                      animate={{ 
+                        rotate: isOpen ? 45 : 0,
+                        backgroundColor: isOpen ? "rgba(57,255,20,0.1)" : "rgba(255,255,255,0.05)",
+                        color: isOpen ? "rgb(57,255,20)" : "rgb(255,255,255)"
                       }}
-                      transition={{ 
-                        type: "spring", 
-                        stiffness: 400, 
-                        damping: 40, 
-                        opacity: { duration: 0.2 } 
-                      }}
+                      transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+                      className="flex-shrink-0 flex items-center justify-center size-10 rounded-full"
                     >
-                      <div className="px-6 pb-6 md:px-8 md:pb-8 pt-0">
-                        <p className="text-base md:text-lg leading-relaxed text-muted">
-                          {faq.answer}
-                        </p>
-                      </div>
+                      <Plus className="size-5" />
                     </motion.div>
-                  )}
-                </AnimatePresence>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial="collapsed"
+                        animate="open"
+                        exit="collapsed"
+                        variants={{
+                          open: { opacity: 1, height: "auto" },
+                          collapsed: { opacity: 0, height: 0 }
+                        }}
+                        transition={{ 
+                          duration: 0.5, 
+                          ease: [0.32, 0.72, 0, 1]
+                        }}
+                      >
+                        <div className="px-5 pb-6 md:px-6 md:pb-8 pt-0">
+                          <p className="text-base md:text-lg leading-relaxed text-muted/80">
+                            {faq.answer}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </motion.div>
             );
           })}

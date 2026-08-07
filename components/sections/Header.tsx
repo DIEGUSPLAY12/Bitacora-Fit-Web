@@ -115,39 +115,51 @@ export default function Header() {
         </div>
       </nav>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu Overlay (Full Screen) */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -10, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="w-full max-w-5xl p-4 bg-surface/95 backdrop-blur-xl border border-white/10 rounded-[24px] shadow-2xl pointer-events-auto flex flex-col gap-4 md:hidden relative z-10"
+            initial={reducedMotion ? { opacity: 0 } : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={reducedMotion ? { opacity: 0 } : { opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+            className="fixed inset-0 z-40 bg-background/98 backdrop-blur-3xl pointer-events-auto flex flex-col justify-center items-center px-6"
           >
-            <ul className="flex flex-col gap-2">
-              {NAV_LINKS.map((link) => {
+            <ul className="flex flex-col gap-6 w-full max-w-sm text-center">
+              {NAV_LINKS.map((link, idx) => {
                 const isActive = activeSection === link.href.substring(1);
                 return (
-                  <li key={link.href}>
+                  <motion.li 
+                    key={link.href}
+                    initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.4, delay: 0.1 + idx * 0.05, ease: [0.32, 0.72, 0, 1] }}
+                  >
                     <a
                       href={link.href}
                       onClick={(e) => handleScrollTo(e, link.href)}
-                      className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                      className={`block py-3 text-3xl font-bold tracking-tight transition-colors ${
                         isActive 
-                          ? "bg-accent/10 text-accent" 
-                          : "text-muted hover:bg-white/5 hover:text-foreground"
+                          ? "text-accent" 
+                          : "text-muted hover:text-foreground"
                       }`}
                     >
                       {link.name}
                     </a>
-                  </li>
+                  </motion.li>
                 );
               })}
             </ul>
-            <div className="pt-2 border-t border-white/10 flex justify-center">
+            <motion.div 
+              className="mt-12 w-full max-w-sm flex justify-center"
+              initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.4, delay: 0.1 + NAV_LINKS.length * 0.05, ease: [0.32, 0.72, 0, 1] }}
+            >
               <DownloadButton />
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

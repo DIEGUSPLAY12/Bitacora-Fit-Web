@@ -37,7 +37,7 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faq" ref={sectionRef} className="py-16 md:py-24 px-5">
+    <section id="faq" ref={sectionRef} className="py-16 md:py-24 px-5 bg-surface/30 border-y border-white/5">
       <div className="mx-auto w-full max-w-3xl">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-[2.5rem] font-bold tracking-tight text-foreground mb-4">

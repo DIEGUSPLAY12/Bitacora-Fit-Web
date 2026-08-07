@@ -1,3 +1,5 @@
+"use client";
+
 import DownloadButton from "@/components/ui/DownloadButton";
 
 export default function Footer() {

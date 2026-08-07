@@ -15,7 +15,7 @@ export default function Comparison() {
   });
 
   return (
-    <section id="comparison" ref={sectionRef} className="py-20 md:py-32 px-5">
+    <section id="comparison" ref={sectionRef} className="py-20 md:py-32 px-5 bg-surface/30 border-y border-white/5">
       <div className="mx-auto w-full max-w-5xl">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-[2.5rem] font-bold tracking-tight text-foreground mb-4">

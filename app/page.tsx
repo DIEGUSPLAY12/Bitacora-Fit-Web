@@ -7,6 +7,7 @@ import Gallery from "@/components/sections/Gallery";
 import FaqSection from "@/components/sections/FaqSection";
 import CtaSection from "@/components/sections/CtaSection";
 import Footer from "@/components/sections/Footer";
+import Divider from "@/components/ui/Divider";
 
 export default function Home() {
   return (
@@ -15,10 +16,12 @@ export default function Home() {
       <main>
         <Hero />
         <SocialProof />
+        <Divider />
         <Features />
         <Comparison />
         <Gallery />
         <FaqSection />
+        <Divider />
         <CtaSection />
       </main>
       <Footer />

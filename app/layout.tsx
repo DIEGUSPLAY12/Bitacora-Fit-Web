@@ -32,7 +32,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html lang="es" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-background text-foreground relative selection:bg-accent selection:text-background">
+      <body className="min-h-full flex flex-col bg-background text-foreground relative selection:bg-accent selection:text-background overflow-x-hidden">
         <NoiseOverlay />
         <SmoothScroll>{children}</SmoothScroll>
       </body>

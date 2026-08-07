@@ -55,9 +55,9 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-4 md:top-6 left-0 right-0 z-50 flex flex-col items-center px-4 pointer-events-none gap-2">
+    <header className="fixed top-4 md:top-6 inset-x-4 z-50 flex flex-col items-center pointer-events-none gap-2">
       {/* Desktop & Mobile Pill */}
-      <nav className="pointer-events-auto flex items-center justify-between bg-surface/80 backdrop-blur-xl border border-white/10 rounded-full px-4 py-2 md:py-3 w-full max-w-5xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-300 relative z-20">
+      <nav className="pointer-events-auto flex items-center justify-between bg-surface/80 backdrop-blur-xl border border-white/10 rounded-full px-4 py-2 md:py-3 w-full max-w-5xl mx-auto shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-300 relative z-20">
         
         {/* Logo */}
         <Link 

@@ -13,28 +13,35 @@ interface ScrollRevealOptions {
   staggerDelay?: number;
   /** Whether the user prefers reduced motion. */
   reducedMotion: boolean;
+  /** Custom Y offset in pixels. Default: 24 */
+  yOffset?: number;
+  /** Custom duration in seconds. Default: 0.6 */
+  duration?: number;
+  /** Custom GSAP ease function. Default: "power2.out" */
+  ease?: string;
+  /** Optional external ref to use instead of creating a new one */
+  ref?: React.RefObject<any>;
 }
 
 /**
  * Attaches a GSAP ScrollTrigger reveal animation to the referenced element.
- *
- * - Fades in from opacity 0 + translateY 24px → visible.
- * - Fires once when the top of the element hits 80% of the viewport.
- * - If `staggerSelector` is provided, animates matching children with stagger.
- * - If `reducedMotion` is true, elements are shown immediately without animation.
  */
 export function useScrollReveal<T extends HTMLElement>({
   staggerSelector,
   staggerDelay = 0.1,
   reducedMotion,
+  yOffset = 24,
+  duration = 0.6,
+  ease = "power2.out",
+  ref: externalRef,
 }: ScrollRevealOptions) {
-  const ref = useRef<T>(null);
+  const internalRef = useRef<T>(null);
+  const ref = externalRef || internalRef;
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
-    // If user prefers reduced motion, make everything visible immediately
     if (reducedMotion) {
       gsap.set(el, { opacity: 1, y: 0 });
       if (staggerSelector) {
@@ -47,14 +54,13 @@ export function useScrollReveal<T extends HTMLElement>({
       ? el.querySelectorAll(staggerSelector)
       : el;
 
-    // Set initial state
-    gsap.set(targets, { opacity: 0, y: 24 });
+    gsap.set(targets, { opacity: 0, y: yOffset });
 
     const tween = gsap.to(targets, {
       opacity: 1,
       y: 0,
-      duration: 0.6,
-      ease: "power2.out",
+      duration: duration,
+      ease: ease,
       stagger: staggerSelector ? staggerDelay : 0,
       scrollTrigger: {
         trigger: el,

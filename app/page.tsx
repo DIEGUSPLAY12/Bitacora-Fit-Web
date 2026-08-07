@@ -7,6 +7,7 @@ import Gallery from "@/components/sections/Gallery";
 import FaqSection from "@/components/sections/FaqSection";
 import CtaSection from "@/components/sections/CtaSection";
 import Footer from "@/components/sections/Footer";
+import ProgressChartSection from "@/components/sections/ProgressChartSection";
 import Divider from "@/components/ui/Divider";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <SocialProof />
         <Divider />
         <Features />
+        <ProgressChartSection />
         <Comparison />
         <Gallery />
         <FaqSection />

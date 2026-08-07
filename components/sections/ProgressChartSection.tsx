@@ -22,7 +22,7 @@ export default function ProgressChartSection() {
   const reducedMotion = usePrefersReducedMotion();
 
   // Curva de Bezier para animaciones físicas (estilo Apple/Linear)
-  const customEase = [0.32, 0.72, 0, 1];
+  const customEase: [number, number, number, number] = [0.32, 0.72, 0, 1];
 
   return (
     <section 

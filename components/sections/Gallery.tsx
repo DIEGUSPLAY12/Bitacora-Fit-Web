@@ -64,34 +64,32 @@ export default function Gallery() {
   const reducedMotion = usePrefersReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // ── Scroll reveal ───────────────────────────────────────
+  // ── Scroll reveal (GSAP Context for cleanup) ─────────────
   useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
+    if (!sectionRef.current) return;
 
-    if (reducedMotion) {
-      gsap.set(el, { opacity: 1, y: 0 });
-      return;
-    }
+    const ctx = gsap.context(() => {
+      if (reducedMotion) {
+        gsap.set(sectionRef.current, { opacity: 1, y: 0 });
+        return;
+      }
 
-    gsap.set(el, { opacity: 0, y: 24 });
+      gsap.set(sectionRef.current, { opacity: 0, y: 40 });
 
-    const tween = gsap.to(el, {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: el,
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-    });
+      gsap.to(sectionRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out", // Premium easing
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+          toggleActions: "play none none none",
+        },
+      });
+    }, sectionRef);
 
-    return () => {
-      tween.scrollTrigger?.kill();
-      tween.kill();
-    };
+    return () => ctx.revert();
   }, [reducedMotion]);
 
   // ── Carousel controls ───────────────────────────────────
@@ -124,32 +122,30 @@ export default function Gallery() {
     <section
       ref={sectionRef}
       id="galeria"
-      className="min-h-dvh flex items-center overflow-hidden py-16 md:py-24"
+      className="min-h-dvh flex items-center py-16 md:py-24"
     >
       <div className="mx-auto w-full max-w-6xl px-5 relative z-10">
-        {/* ── Layout 2 columnas (desktop) / stack (móvil) ── */}
-        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          
           {/* ─── Columna izquierda: Texto sincronizado ─── */}
           <div className="w-full lg:w-2/5 text-center lg:text-left order-2 lg:order-1">
-            {/* Encabezado de sección */}
-            <p className="text-xs font-semibold uppercase tracking-widest text-accent mb-4">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-6">
               Así se ve
             </p>
 
-            {/* Título y descripción animados */}
-            <div className="relative min-h-[120px]">
+            <div className="relative min-h-[140px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
-                  initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
+                  initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, y: -16, filter: "blur(4px)" }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} // Taste skill premium easing
                 >
-                  <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-3">
+                  <h2 className="text-3xl md:text-[2.5rem] leading-[1.1] font-bold tracking-tight text-foreground mb-4">
                     {activeShot.title}
                   </h2>
-                  <p className="text-base md:text-lg text-muted leading-relaxed max-w-md mx-auto lg:mx-0">
+                  <p className="text-lg md:text-xl text-muted leading-relaxed max-w-md mx-auto lg:mx-0">
                     {activeShot.description}
                   </p>
                 </motion.div>
@@ -163,9 +159,9 @@ export default function Gallery() {
                   key={i}
                   onClick={() => setActiveIndex(i)}
                   className={[
-                    "h-2 rounded-full transition-all duration-300",
+                    "h-1.5 rounded-full transition-all duration-500 ease-out",
                     i === activeIndex
-                      ? "w-8 bg-accent"
+                      ? "w-10 bg-accent"
                       : "w-2 bg-white/20 hover:bg-white/40",
                   ].join(" ")}
                   aria-label={`Ir a la captura ${i + 1}: ${SCREENSHOTS[i].title}`}
@@ -174,12 +170,12 @@ export default function Gallery() {
             </div>
 
             {/* ── Flechas (solo desktop) ──────────────── */}
-            <div className="hidden lg:flex items-center gap-3 mt-6">
+            <div className="hidden lg:flex items-center gap-3 mt-10">
               <button
                 type="button"
                 onClick={handlePrev}
                 aria-label="Captura anterior"
-                className="size-11 flex items-center justify-center rounded-full bg-surface/80 backdrop-blur-md text-foreground transition-all hover:scale-110 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent border border-white/10"
+                className="size-12 flex items-center justify-center rounded-full bg-surface/80 backdrop-blur-md text-foreground transition-all hover:scale-105 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent border border-white/10"
               >
                 <ChevronLeft className="size-5" />
               </button>
@@ -187,11 +183,11 @@ export default function Gallery() {
                 type="button"
                 onClick={handleNext}
                 aria-label="Captura siguiente"
-                className="size-11 flex items-center justify-center rounded-full bg-surface/80 backdrop-blur-md text-foreground transition-all hover:scale-110 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent border border-white/10"
+                className="size-12 flex items-center justify-center rounded-full bg-surface/80 backdrop-blur-md text-foreground transition-all hover:scale-105 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent border border-white/10"
               >
                 <ChevronRight className="size-5" />
               </button>
-              <span className="text-xs text-muted ml-1">
+              <span className="text-sm font-medium text-muted ml-3 tracking-widest">
                 {activeIndex + 1} / {SCREENSHOTS.length}
               </span>
             </div>
@@ -199,36 +195,34 @@ export default function Gallery() {
 
           {/* ─── Columna derecha: Carrusel coverflow ───── */}
           <div className="w-full lg:w-3/5 order-1 lg:order-2">
-            <div className="relative w-full max-w-xl mx-auto">
-              {/* Flechas en los bordes del carrusel (solo móvil/tablet) */}
+            <div className="relative w-full max-w-2xl mx-auto">
+              
+              {/* Flechas en móvil */}
               <button
                 type="button"
                 onClick={handlePrev}
                 aria-label="Captura anterior"
-                className="flex lg:hidden absolute -left-2 top-1/2 -translate-y-1/2 z-20 size-10 items-center justify-center rounded-full bg-surface/80 backdrop-blur-md text-foreground transition-all hover:scale-110 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent shadow-xl border border-white/10"
+                className="flex lg:hidden absolute -left-4 top-1/2 -translate-y-1/2 z-20 size-12 items-center justify-center rounded-full bg-surface/90 backdrop-blur-md text-foreground transition-all focus-visible:outline-accent shadow-2xl border border-white/10"
               >
-                <ChevronLeft className="size-5" />
+                <ChevronLeft className="size-6" />
               </button>
-
               <button
                 type="button"
                 onClick={handleNext}
                 aria-label="Captura siguiente"
-                className="flex lg:hidden absolute -right-2 top-1/2 -translate-y-1/2 z-20 size-10 items-center justify-center rounded-full bg-surface/80 backdrop-blur-md text-foreground transition-all hover:scale-110 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent shadow-xl border border-white/10"
+                className="flex lg:hidden absolute -right-4 top-1/2 -translate-y-1/2 z-20 size-12 items-center justify-center rounded-full bg-surface/90 backdrop-blur-md text-foreground transition-all focus-visible:outline-accent shadow-2xl border border-white/10"
               >
-                <ChevronRight className="size-5" />
+                <ChevronRight className="size-6" />
               </button>
 
-              {/* Contenedor del carrusel */}
               <div
-                className="relative w-full h-[420px] md:h-[500px] flex items-center justify-center outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-[32px]"
+                className="relative w-full h-[420px] md:h-[550px] flex items-center justify-center outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-[40px] perspective-[1200px]"
                 tabIndex={0}
                 onKeyDown={handleKeyDown}
                 aria-label="Galería interactiva de capturas de pantalla"
               >
                 <AnimatePresence initial={false}>
                   {SCREENSHOTS.map((shot, index) => {
-                    // Cálculo de posición circular
                     let offset = index - activeIndex;
                     if (offset < -2) offset += SCREENSHOTS.length;
                     if (offset > 2) offset -= SCREENSHOTS.length;
@@ -247,42 +241,47 @@ export default function Gallery() {
                       center: {
                         x: "-50%",
                         y: "-50%",
+                        rotateY: 0,
                         scale: 1,
                         opacity: 1,
                         zIndex: 10,
                         filter: reducedMotion ? "none" : "blur(0px)",
                       },
                       left: {
-                        x: "-125%",
+                        x: "-110%",
                         y: "-50%",
-                        scale: 0.78,
-                        opacity: 0.35,
+                        rotateY: 15,
+                        scale: 0.85,
+                        opacity: 0.4,
                         zIndex: 5,
-                        filter: reducedMotion ? "none" : "blur(4px)",
+                        filter: reducedMotion ? "none" : "blur(6px)",
                       },
                       right: {
-                        x: "25%",
+                        x: "10%",
                         y: "-50%",
-                        scale: 0.78,
-                        opacity: 0.35,
+                        rotateY: -15,
+                        scale: 0.85,
+                        opacity: 0.4,
                         zIndex: 5,
-                        filter: reducedMotion ? "none" : "blur(4px)",
+                        filter: reducedMotion ? "none" : "blur(6px)",
                       },
                       hiddenLeft: {
-                        x: "-175%",
+                        x: "-150%",
                         y: "-50%",
-                        scale: 0.6,
+                        rotateY: 25,
+                        scale: 0.7,
                         opacity: 0,
                         zIndex: 1,
-                        filter: reducedMotion ? "none" : "blur(8px)",
+                        filter: reducedMotion ? "none" : "blur(12px)",
                       },
                       hiddenRight: {
-                        x: "75%",
+                        x: "50%",
                         y: "-50%",
-                        scale: 0.6,
+                        rotateY: -25,
+                        scale: 0.7,
                         opacity: 0,
                         zIndex: 1,
-                        filter: reducedMotion ? "none" : "blur(8px)",
+                        filter: reducedMotion ? "none" : "blur(12px)",
                       },
                     };
 
@@ -292,10 +291,11 @@ export default function Gallery() {
                         initial={false}
                         animate={state}
                         variants={variants}
+                        // Motion Design Principles: Crisp, fast, responsive spring
                         transition={{
                           type: "spring",
-                          stiffness: 300,
-                          damping: 30,
+                          stiffness: 400,
+                          damping: 40,
                           mass: 0.8,
                         }}
                         onClick={() => {
@@ -304,11 +304,12 @@ export default function Gallery() {
                         }}
                         className={[
                           "absolute top-1/2 left-1/2",
-                          "w-[55vw] max-w-[190px] md:max-w-[220px]",
-                          "h-[380px] md:h-[460px]",
-                          "bg-[#121212] rounded-[28px] border border-white/10 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.7)] overflow-hidden",
+                          "w-[60vw] max-w-[210px] md:max-w-[260px]",
+                          "h-[400px] md:h-[520px]",
+                          "bg-black rounded-[32px] md:rounded-[40px] border-[2px] border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] overflow-hidden",
                           isCenter ? "cursor-default" : "cursor-pointer",
                         ].join(" ")}
+                        style={{ transformStyle: "preserve-3d" }}
                       >
                         <Image
                           src={shot.src}
@@ -318,6 +319,10 @@ export default function Gallery() {
                           priority={isCenter || isLeft || isRight}
                           className="block w-full h-full pointer-events-none object-contain object-top"
                         />
+                        {/* Sutil gradiente sobre la imagen para emular reflejo 3D en los que no están en el centro */}
+                        {!isCenter && (
+                          <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+                        )}
                       </motion.div>
                     );
                   })}

@@ -55,9 +55,9 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-4 md:top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+    <header className="fixed top-4 md:top-6 left-0 right-0 z-50 flex flex-col items-center px-4 pointer-events-none gap-2">
       {/* Desktop & Mobile Pill */}
-      <nav className="pointer-events-auto flex items-center justify-between bg-surface/80 backdrop-blur-xl border border-white/10 rounded-full px-4 py-2 md:py-3 w-full max-w-5xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-300">
+      <nav className="pointer-events-auto flex items-center justify-between bg-surface/80 backdrop-blur-xl border border-white/10 rounded-full px-4 py-2 md:py-3 w-full max-w-5xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-300 relative z-20">
         
         {/* Logo */}
         <Link 
@@ -105,9 +105,10 @@ export default function Header() {
           </div>
           
           <button
-            className="md:hidden p-2 text-foreground rounded-full hover:bg-white/5 transition-colors"
+            className="md:hidden p-2 text-foreground rounded-full hover:bg-white/5 transition-colors focus-visible:outline-accent"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Abrir menú"
+            aria-expanded={isMobileMenuOpen}
+            aria-label="Abrir menú de navegación"
           >
             {isMobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
@@ -122,7 +123,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-4 right-4 mt-2 p-4 bg-surface/95 backdrop-blur-xl border border-white/10 rounded-[24px] shadow-2xl pointer-events-auto flex flex-col gap-4 md:hidden"
+            className="w-full max-w-5xl p-4 bg-surface/95 backdrop-blur-xl border border-white/10 rounded-[24px] shadow-2xl pointer-events-auto flex flex-col gap-4 md:hidden relative z-10"
           >
             <ul className="flex flex-col gap-2">
               {NAV_LINKS.map((link) => {
@@ -144,7 +145,7 @@ export default function Header() {
                 );
               })}
             </ul>
-            <div className="pt-2 border-t border-white/10">
+            <div className="pt-2 border-t border-white/10 flex justify-center">
               <DownloadButton />
             </div>
           </motion.div>

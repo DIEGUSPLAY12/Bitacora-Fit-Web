@@ -15,19 +15,19 @@ export default function Comparison() {
   });
 
   return (
-    <section id="comparison" ref={sectionRef} className="py-24 md:py-40 px-5 bg-surface/30 border-y border-white/5 relative overflow-hidden">
+    <section id="comparison" ref={sectionRef} className="py-16 md:py-24 px-5 bg-surface/30 border-y border-white/5 relative overflow-hidden">
       {/* Luz difusa de fondo */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[300px] bg-accent/5 blur-[120px] rounded-[100%] pointer-events-none -z-10" aria-hidden />
 
       <div className="mx-auto w-full max-w-5xl relative z-10">
-        <div className="text-center mb-20 md:mb-24 flex flex-col items-center">
+        <div className="text-center mb-12 md:mb-16 flex flex-col items-center">
           <div className="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold text-muted bg-white/5 mb-6 border border-white/10">
             Cambio de paradigma
           </div>
-          <h2 className="text-[2rem] md:text-[3.5rem] leading-[1.1] font-bold tracking-tight text-foreground mb-6 text-balance">
+          <h2 className="text-3xl md:text-4xl leading-[1.1] font-bold tracking-tight text-foreground mb-6 text-balance">
             El problema vs La solución
           </h2>
-          <p className="text-lg md:text-xl text-muted/90 max-w-2xl mx-auto leading-relaxed text-balance">
+          <p className="text-base md:text-lg text-muted/90 max-w-2xl mx-auto leading-relaxed text-balance">
             Deja atrás el caos de las aplicaciones de notas genéricas y da el salto a un sistema diseñado exclusivamente para el alto rendimiento.
           </p>
         </div>
@@ -46,8 +46,8 @@ export default function Comparison() {
             <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent pointer-events-none" />
             
             <div className="relative z-10">
-              <h3 className="text-2xl font-bold text-white/60 mb-8 flex items-center gap-3">
-                <XCircle className="size-6 text-red-400/50" />
+              <h3 className="text-xl font-bold text-white/60 mb-8 flex items-center gap-3">
+                <XCircle className="size-5 text-red-400/50" />
                 El método antiguo
               </h3>
               
@@ -59,9 +59,9 @@ export default function Comparison() {
                   "Te distraes con notificaciones de otras apps sociales",
                   "Dependes de tener buena cobertura en el gimnasio"
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-4 text-muted">
-                    <span className="text-red-400/50 text-xl leading-none mt-1">×</span>
-                    <span className="text-lg leading-snug">{item}</span>
+                  <li key={idx} className="flex items-start gap-3 text-muted">
+                    <span className="text-red-400/50 text-lg leading-none mt-1">×</span>
+                    <span className="text-base leading-snug">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -80,8 +80,8 @@ export default function Comparison() {
             <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent pointer-events-none" />
             
             <div className="relative z-10">
-              <h3 className="text-2xl font-bold text-foreground mb-8 flex items-center gap-3">
-                <CheckCircle2 className="size-6 text-accent" />
+              <h3 className="text-xl font-bold text-foreground mb-8 flex items-center gap-3">
+                <CheckCircle2 className="size-5 text-accent" />
                 Bitácora Fit
               </h3>
               
@@ -93,9 +93,9 @@ export default function Comparison() {
                   "Cero distracciones sociales. Solo tú y el hierro",
                   "Funciona 100% offline sin problemas"
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-4 text-foreground">
-                    <CheckCircle2 className="size-6 text-accent shrink-0" />
-                    <span className="text-lg font-medium leading-snug">{item}</span>
+                  <li key={idx} className="flex items-start gap-3 text-foreground">
+                    <CheckCircle2 className="size-5 text-accent shrink-0 mt-0.5" />
+                    <span className="text-base font-medium leading-snug">{item}</span>
                   </li>
                 ))}
               </ul>

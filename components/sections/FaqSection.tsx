@@ -37,20 +37,20 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faq" ref={sectionRef} className="py-24 md:py-40 px-5 bg-background relative overflow-hidden">
+    <section id="faq" ref={sectionRef} className="py-16 md:py-24 px-5 bg-background relative overflow-hidden">
       {/* Luz difusa superior */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[300px] bg-white/[0.02] blur-[120px] rounded-[100%] pointer-events-none -z-10" aria-hidden />
 
       <div className="mx-auto w-full max-w-3xl relative z-10">
-        <div className="text-center mb-16 md:mb-24 flex flex-col items-center">
+        <div className="text-center mb-12 md:mb-16 flex flex-col items-center">
           <div className="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold text-muted bg-white/5 mb-6 border border-white/10">
             Soporte & Dudas
           </div>
-          <h2 className="text-[2.5rem] md:text-[3.5rem] leading-[1.1] font-bold tracking-tight text-foreground mb-6 text-balance">
+          <h2 className="text-3xl md:text-4xl leading-[1.1] font-bold tracking-tight text-foreground mb-6 text-balance">
             Preguntas Frecuentes
           </h2>
-          <p className="text-lg md:text-xl text-muted/90 max-w-xl mx-auto leading-relaxed text-balance">
-            Todo lo que necesitas saber sobre Bitácora Fit antes de dar el paso.
+          <p className="text-base md:text-lg text-muted/90 max-w-xl mx-auto leading-relaxed text-balance">
+            Todo lo que necesitas saber sobre Bitácora Fit. Transparencia total.
           </p>
         </div>
 
@@ -77,7 +77,7 @@ export default function FaqSection() {
                     className="w-full flex items-center justify-between p-5 md:p-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-[calc(1.5rem-0.375rem)]"
                     aria-expanded={isOpen}
                   >
-                    <span className={`text-lg md:text-xl font-semibold transition-colors duration-300 pr-8 ${
+                    <span className={`text-base md:text-lg font-bold transition-colors duration-300 pr-8 ${
                       isOpen ? "text-foreground" : "text-muted"
                     }`}>
                       {faq.question}
@@ -112,7 +112,7 @@ export default function FaqSection() {
                         }}
                       >
                         <div className="px-5 pb-6 md:px-6 md:pb-8 pt-0">
-                          <p className="text-base md:text-lg leading-relaxed text-muted/80">
+                          <p className="text-sm md:text-base text-muted leading-relaxed">
                             {faq.answer}
                           </p>
                         </div>

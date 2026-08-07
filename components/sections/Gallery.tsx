@@ -122,7 +122,7 @@ export default function Gallery() {
     <section
       ref={sectionRef}
       id="galeria"
-      className="min-h-dvh flex items-center py-16 md:py-24"
+      className="flex items-center py-16 md:py-24"
     >
       <div className="mx-auto w-full max-w-6xl px-5 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
@@ -142,10 +142,10 @@ export default function Gallery() {
                   exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} // Taste skill premium easing
                 >
-                  <h2 className="text-3xl md:text-[2.5rem] leading-[1.1] font-bold tracking-tight text-foreground mb-4">
+                  <h2 className="text-2xl md:text-3xl leading-[1.1] font-bold tracking-tight text-foreground mb-4">
                     {activeShot.title}
                   </h2>
-                  <p className="text-lg md:text-xl text-muted leading-relaxed max-w-md mx-auto lg:mx-0">
+                  <p className="text-base md:text-lg text-muted leading-relaxed max-w-md mx-auto lg:mx-0">
                     {activeShot.description}
                   </p>
                 </motion.div>

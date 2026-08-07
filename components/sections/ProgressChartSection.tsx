@@ -27,7 +27,7 @@ export default function ProgressChartSection() {
   return (
     <section 
       ref={containerRef} 
-      className="py-24 md:py-40 px-5 bg-background relative overflow-hidden"
+      className="py-16 md:py-24 px-5 bg-background relative overflow-hidden"
     >
       {/* Luz ambiental difusa de fondo */}
       <div 
@@ -42,10 +42,10 @@ export default function ProgressChartSection() {
           <div className="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold text-accent bg-accent/10 mb-6 border border-accent/20">
             Analítica Avanzada
           </div>
-          <h2 className="text-[2rem] md:text-[3rem] font-bold tracking-tight text-foreground mb-6 leading-[1.1] text-balance">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-6 leading-[1.1] text-balance">
             Compite contra tus <br className="hidden md:block" /> propios datos
           </h2>
-          <p className="text-lg md:text-xl text-muted/90 mb-10 leading-relaxed max-w-lg text-balance">
+          <p className="text-base md:text-lg text-muted/90 mb-10 leading-relaxed max-w-lg text-balance">
             La motivación real viene de ver cómo superas tus marcas. Bitácora Fit transforma tu esfuerzo en métricas tangibles y récords personales irrefutables.
           </p>
           
@@ -62,10 +62,10 @@ export default function ProgressChartSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                 transition={{ duration: 0.8, delay: 0.2 + idx * 0.1, ease: customEase }}
               >
-                <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent font-bold text-sm group-hover:scale-105 group-hover:bg-accent/10 transition-all duration-500">
+                <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent font-bold text-xs group-hover:scale-105 group-hover:bg-accent/10 transition-all duration-500">
                   {item.num}
                 </div>
-                <span className="text-foreground font-medium text-lg">{item.text}</span>
+                <span className="text-foreground font-medium text-base">{item.text}</span>
               </motion.div>
             ))}
           </div>
@@ -80,7 +80,7 @@ export default function ProgressChartSection() {
             <div className="absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent opacity-50" />
             
             {/* Inner Core (Núcleo interno con el gráfico) */}
-            <div className="bg-[#0A0A0A] border border-white/10 rounded-[calc(2.5rem-0.75rem)] p-6 md:p-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] relative overflow-hidden h-[400px] flex flex-col justify-end">
+            <div className="bg-[#0A0A0A] border border-white/10 rounded-[calc(2.5rem-0.75rem)] p-6 md:p-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] relative overflow-hidden h-[320px] md:h-[350px] flex flex-col justify-end">
               
               {/* Rejilla de fondo (Grid) */}
               <div className="absolute inset-0 p-10 flex flex-col justify-between opacity-[0.03] pointer-events-none">
@@ -101,7 +101,7 @@ export default function ProgressChartSection() {
               </motion.div>
 
               {/* Gráfico de Barras Animado */}
-              <div className="relative w-full h-[250px] flex items-end justify-between gap-2 md:gap-4 z-10">
+              <div className="relative w-full h-[200px] md:h-[220px] flex items-end justify-between gap-2 md:gap-4 z-10">
                 {CHART_DATA.map((data, index) => {
                   const isMax = data.value === 100;
                   return (

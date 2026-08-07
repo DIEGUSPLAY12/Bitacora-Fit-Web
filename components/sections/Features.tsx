@@ -50,14 +50,22 @@ export default function Features() {
     <section
       id="features"
       ref={containerRef}
-      className="py-section-mobile md:py-section-desktop"
+      className="py-16 md:py-24 relative overflow-hidden"
     >
       <div className="mx-auto max-w-6xl px-5 relative z-10">
-        <h2 className="text-3xl md:text-[2.25rem] font-bold tracking-tight text-balance text-foreground mb-10 md:mb-16">
-          Todo lo que necesitas, nada más
-        </h2>
+        
+        {/* Encabezado Premium */}
+        <div className="text-center mb-12 md:mb-16 flex flex-col items-center">
+          <div className="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold text-muted bg-white/5 mb-6 border border-white/10">
+            Flujo de trabajo
+          </div>
+          <h2 className="text-3xl md:text-4xl leading-[1.1] font-bold tracking-tight text-foreground mb-6 text-balance">
+            Todo lo que necesitas, <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-muted">nada más.</span>
+          </h2>
+        </div>
 
-        {/* Bento Grid Layout */}
+        {/* Bento Grid Layout Pro-Max */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
           {FEATURES.map((feature, index) => {
             const Icon = feature.icon;
@@ -68,14 +76,56 @@ export default function Features() {
               <div 
                 key={feature.title} 
                 data-feature-card
-                className={isWide ? "md:col-span-2" : "md:col-span-1"}
+                className={`relative group ${isWide ? "md:col-span-2" : "md:col-span-1"}`}
               >
-                <FeatureCard
-                  icon={<Icon className="size-6 text-accent" strokeWidth={2} aria-hidden />}
-                  title={feature.title}
-                  description={feature.description}
-                  className="h-full"
-                />
+                {/* Double-Bezel Glass Container */}
+                <div className="h-full w-full rounded-[2rem] p-1.5 md:p-2 bg-white/[0.02] border border-white/5 shadow-2xl transition-transform duration-500 ease-out motion-safe:group-hover:scale-[0.98]">
+                  <div className="relative h-full w-full rounded-[calc(2rem-0.375rem)] md:rounded-[calc(2rem-0.5rem)] border border-white/10 bg-surface/50 overflow-hidden flex flex-col justify-end p-6 md:p-8 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] transition-colors duration-500 group-hover:bg-surface/80">
+                    
+                    {/* Luces y Efectos de Fondo Específicos */}
+                    {index === 0 && (
+                      <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-accent/10 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/4 opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
+                    )}
+                    {index === 3 && (
+                      <div className="absolute bottom-0 left-0 w-full h-[200px] bg-gradient-to-t from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                    )}
+
+                    {/* Gráficos / Ilustraciones dentro de las tarjetas grandes */}
+                    {index === 0 && (
+                      <div className="absolute -top-12 -right-12 md:top-4 md:right-4 opacity-10 group-hover:opacity-30 transition-opacity duration-700 pointer-events-none">
+                        {/* Mockup abstracto */}
+                        <div className="w-48 h-64 border-2 border-white/20 rounded-2xl flex flex-col gap-3 p-4 rotate-12 scale-110">
+                          <div className="w-full h-8 bg-white/20 rounded-lg" />
+                          <div className="w-3/4 h-4 bg-white/20 rounded-sm" />
+                          <div className="w-5/6 h-4 bg-white/20 rounded-sm" />
+                        </div>
+                      </div>
+                    )}
+
+                    {index === 3 && (
+                      <div className="absolute top-8 right-8 flex items-end gap-2 opacity-10 group-hover:opacity-30 transition-all duration-700 group-hover:-translate-y-2 pointer-events-none">
+                        {/* Gráfico de barras abstracto */}
+                        <div className="w-6 h-12 bg-white/30 rounded-sm" />
+                        <div className="w-6 h-20 bg-white/30 rounded-sm" />
+                        <div className="w-6 h-32 bg-accent/40 rounded-sm" />
+                      </div>
+                    )}
+
+                    {/* Contenido (Icono + Texto) */}
+                    <div className="relative z-10 flex flex-col items-start mt-auto">
+                      <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:bg-white/10">
+                        <Icon className="size-5 text-accent" strokeWidth={2} aria-hidden />
+                      </div>
+                      <h3 className="text-lg font-bold text-foreground mb-2 tracking-tight">
+                        {feature.title}
+                      </h3>
+                      <p className="text-sm text-muted leading-relaxed max-w-md">
+                        {feature.description}
+                      </p>
+                    </div>
+
+                  </div>
+                </div>
               </div>
             );
           })}

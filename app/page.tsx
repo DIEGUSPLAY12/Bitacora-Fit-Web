@@ -8,6 +8,7 @@ import FaqSection from "@/components/sections/FaqSection";
 import CtaSection from "@/components/sections/CtaSection";
 import Footer from "@/components/sections/Footer";
 import ProgressChartSection from "@/components/sections/ProgressChartSection";
+import BottomMarquee from "@/components/sections/BottomMarquee";
 import Divider from "@/components/ui/Divider";
 
 export default function Home() {
@@ -25,6 +26,7 @@ export default function Home() {
         <FaqSection />
         <Divider />
         <CtaSection />
+        <BottomMarquee />
       </main>
       <Footer />
     </>

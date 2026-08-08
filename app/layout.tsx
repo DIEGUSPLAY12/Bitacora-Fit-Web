@@ -21,11 +21,11 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Bitácora Fit — Registra tus entrenos, entrena con criterio",
+  title: "Bitácora Fit",
   description:
     "Bitácora Fit es la app para registrar peso, series y repeticiones en el gimnasio. Lleva el control real de tu progreso y entrena con datos, no con memoria.",
   openGraph: {
-    title: "Bitácora Fit — Registra tus entrenos, entrena con criterio",
+    title: "Bitácora Fit",
     description:
       "App de registro de entrenamientos para Android. Controla tu peso, series y repeticiones y mide tu progreso real en el gimnasio.",
     type: "website",

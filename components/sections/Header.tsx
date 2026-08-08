@@ -55,7 +55,8 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-4 md:top-6 inset-x-4 z-50 flex flex-col items-center pointer-events-none gap-2">
+    <>
+      <header className="fixed top-4 md:top-6 inset-x-4 z-50 flex flex-col items-center pointer-events-none gap-2">
       {/* Desktop & Mobile Pill */}
       <nav className="pointer-events-auto flex items-center justify-between bg-surface/80 backdrop-blur-xl border border-white/10 rounded-full px-4 py-2 md:py-3 w-full max-w-5xl mx-auto shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-300 relative z-20">
         
@@ -114,6 +115,7 @@ export default function Header() {
           </button>
         </div>
       </nav>
+    </header>
 
       {/* Mobile Menu Backdrop */}
       <AnimatePresence>
@@ -123,7 +125,7 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm pointer-events-auto"
+            className="fixed inset-0 z-[50] bg-black/60 backdrop-blur-sm pointer-events-auto"
             onClick={() => setIsMobileMenuOpen(false)}
             aria-hidden="true"
           />
@@ -138,7 +140,7 @@ export default function Header() {
             animate={{ opacity: 1, x: 0 }}
             exit={reducedMotion ? { opacity: 0, x: 20 } : { opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-surface border-l border-white/10 z-50 shadow-2xl pointer-events-auto flex flex-col"
+            className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-surface border-l border-white/10 z-[60] shadow-2xl pointer-events-auto flex flex-col"
           >
             {/* Header del panel */}
             <div className="flex items-center justify-between p-5 border-b border-white/5">
@@ -186,6 +188,6 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

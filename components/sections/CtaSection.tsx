@@ -5,6 +5,7 @@ import { motion, useMotionTemplate, useMotionValue } from "motion/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import DownloadButton from "@/components/ui/DownloadButton";
+import LogoIcon from "@/components/ui/LogoIcon";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
@@ -66,6 +67,11 @@ export default function CtaSection() {
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           }}
         />
+
+        {/* Decorative Watermark */}
+        <div className="absolute -right-20 -bottom-20 z-0 opacity-[0.03] pointer-events-none w-96 h-96 text-white rotate-12">
+          <LogoIcon className="w-full h-full" />
+        </div>
 
         <div className="relative z-10 px-6 py-16 md:py-20 flex flex-col items-center text-center">
           

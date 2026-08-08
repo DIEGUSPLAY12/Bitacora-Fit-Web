@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import DownloadButton from "@/components/ui/DownloadButton";
+import Brand from "@/components/ui/Brand";
 
 const FOOTER_LINKS = {
   proyecto: [
@@ -26,8 +27,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
           {/* Brand column */}
           <div className="md:col-span-5 flex flex-col items-center md:items-start gap-4">
-            <Link href="/" className="text-xl font-bold tracking-tight text-foreground">
-              Bitácora Fit
+            <Link href="/" className="transition-opacity hover:opacity-80">
+              <Brand iconClassName="w-6 h-6 md:w-8 md:h-8" textClassName="text-xl md:text-2xl font-bold tracking-tight text-foreground" />
             </Link>
             <p className="text-sm text-muted text-center md:text-left max-w-xs leading-relaxed">
               App de registro de entrenamientos en desarrollo activo. Gratis, sin anuncios y diseñada para gente que se toma en serio el gimnasio.

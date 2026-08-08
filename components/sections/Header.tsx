@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 import DownloadButton from "@/components/ui/DownloadButton";
+import Brand from "@/components/ui/Brand";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 const NAV_LINKS = [
@@ -64,9 +65,9 @@ export default function Header() {
         <Link 
           href="#" 
           onClick={(e) => handleScrollTo(e as any, "body")}
-          className="text-lg font-bold tracking-tight text-foreground pl-2"
+          className="pl-2 transition-opacity hover:opacity-80"
         >
-          Bitácora Fit
+          <Brand iconClassName="w-5 h-5 md:w-6 md:h-6" textClassName="text-base md:text-lg font-bold tracking-tight text-foreground" />
         </Link>
 
         {/* Desktop Links */}

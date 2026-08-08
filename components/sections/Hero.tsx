@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import DownloadButton from "@/components/ui/DownloadButton";
+import LogoIcon from "@/components/ui/LogoIcon";
 import { BASE_PATH } from "@/lib/constants";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
@@ -92,7 +93,10 @@ export default function Hero() {
         aria-hidden
       />
 
-
+      {/* Decorative Brand Watermark */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[-4] opacity-[0.03] pointer-events-none w-[120vw] h-[120vw] max-w-[1200px] max-h-[1200px] flex items-center justify-center text-white">
+        <LogoIcon className="w-full h-full" />
+      </div>
 
       <div className="mx-auto max-w-6xl px-5 py-section-mobile md:py-section-desktop">
         <div className="flex flex-col md:flex-row md:items-center md:gap-16 gap-10">

@@ -171,7 +171,7 @@ export default function Hero() {
               style={{ transformStyle: "preserve-3d" }}
             >
               <Image
-                src="/screenshots/home.png"
+                src={`${BASE_PATH}/screenshots/home.png`}
                 alt="Pantalla de inicio de Bitácora Fit con racha de entrenos y accesos rápidos"
                 width={487}
                 height={1105}

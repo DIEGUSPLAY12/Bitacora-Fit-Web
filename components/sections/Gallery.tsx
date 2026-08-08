@@ -175,17 +175,17 @@ export default function Gallery() {
                 type="button"
                 onClick={handlePrev}
                 aria-label="Captura anterior"
-                className="size-12 flex items-center justify-center rounded-full bg-surface/80 backdrop-blur-md text-foreground transition-all hover:scale-105 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent border border-white/10"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-surface/80 backdrop-blur-md text-foreground transition-all hover:scale-105 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent border border-white/10"
               >
-                <ChevronLeft className="size-5" />
+                <ChevronLeft className="w-5 h-5" />
               </button>
               <button
                 type="button"
                 onClick={handleNext}
                 aria-label="Captura siguiente"
-                className="size-12 flex items-center justify-center rounded-full bg-surface/80 backdrop-blur-md text-foreground transition-all hover:scale-105 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent border border-white/10"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-surface/80 backdrop-blur-md text-foreground transition-all hover:scale-105 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent border border-white/10"
               >
-                <ChevronRight className="size-5" />
+                <ChevronRight className="w-5 h-5" />
               </button>
               <span className="text-sm font-medium text-muted ml-3 tracking-widest">
                 {activeIndex + 1} / {SCREENSHOTS.length}
@@ -202,17 +202,17 @@ export default function Gallery() {
                 type="button"
                 onClick={handlePrev}
                 aria-label="Captura anterior"
-                className="flex lg:hidden absolute -left-4 top-1/2 -translate-y-1/2 z-20 size-12 items-center justify-center rounded-full bg-surface/90 backdrop-blur-md text-foreground transition-all focus-visible:outline-accent shadow-2xl border border-white/10"
+                className="flex lg:hidden absolute -left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full bg-surface/90 backdrop-blur-md text-foreground transition-all focus-visible:outline-accent shadow-2xl border border-white/10"
               >
-                <ChevronLeft className="size-6" />
+                <ChevronLeft className="w-6 h-6" />
               </button>
               <button
                 type="button"
                 onClick={handleNext}
                 aria-label="Captura siguiente"
-                className="flex lg:hidden absolute -right-4 top-1/2 -translate-y-1/2 z-20 size-12 items-center justify-center rounded-full bg-surface/90 backdrop-blur-md text-foreground transition-all focus-visible:outline-accent shadow-2xl border border-white/10"
+                className="flex lg:hidden absolute -right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full bg-surface/90 backdrop-blur-md text-foreground transition-all focus-visible:outline-accent shadow-2xl border border-white/10"
               >
-                <ChevronRight className="size-6" />
+                <ChevronRight className="w-6 h-6" />
               </button>
 
               <div

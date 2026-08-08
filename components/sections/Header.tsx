@@ -112,7 +112,7 @@ export default function Header() {
             aria-expanded={isMobileMenuOpen}
             aria-label="Abrir menú de navegación"
           >
-            {isMobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </nav>
@@ -151,7 +151,7 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 aria-label="Cerrar menú"
               >
-                <X className="size-5" />
+                <X className="w-5 h-5" />
               </button>
             </div>
 

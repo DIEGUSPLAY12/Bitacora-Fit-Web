@@ -46,7 +46,7 @@ export default function FeatureCard({ icon, title, description, className = "" }
       
       {/* Contenido */}
       <div className="relative z-10 flex flex-col gap-4 h-full">
-        <div className="size-12 rounded-[16px] bg-[#121212]/50 shadow-inner flex items-center justify-center border border-white/5 mb-2">
+        <div className="w-12 h-12 rounded-[16px] bg-[#121212]/50 shadow-inner flex items-center justify-center border border-white/5 mb-2">
           {icon}
         </div>
         <div className="mt-auto">

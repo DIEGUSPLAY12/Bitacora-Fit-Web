@@ -27,7 +27,7 @@ export default function PageHeader() {
             href="/"
             className="flex items-center gap-2 pl-2 group transition-opacity hover:opacity-80"
           >
-            <ArrowLeft className="size-4 text-muted group-hover:text-accent transition-colors duration-300" />
+            <ArrowLeft className="w-4 h-4 text-muted group-hover:text-accent transition-colors duration-300" />
             <Brand iconClassName="w-5 h-5 md:w-6 md:h-6" textClassName="text-base md:text-lg font-bold tracking-tight text-foreground" />
           </Link>
 
@@ -57,7 +57,7 @@ export default function PageHeader() {
             aria-expanded={isMobileMenuOpen}
             aria-label="Abrir menú de navegación"
           >
-            {isMobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </nav>
@@ -96,7 +96,7 @@ export default function PageHeader() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 aria-label="Cerrar menú"
               >
-                <X className="size-5" />
+                <X className="w-5 h-5" />
               </button>
             </div>
 

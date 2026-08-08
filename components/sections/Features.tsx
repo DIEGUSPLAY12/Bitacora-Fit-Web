@@ -113,7 +113,7 @@ export default function Features() {
                     {/* Contenido (Icono + Texto) */}
                     <div className="relative z-10 flex flex-col items-start mt-auto">
                       <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:bg-white/10">
-                        <Icon className="size-5 text-accent" strokeWidth={2} aria-hidden />
+                        <Icon className="w-5 h-5 text-accent" strokeWidth={2} aria-hidden />
                       </div>
                       <h3 className="font-display text-lg font-bold text-foreground mb-2 tracking-tight">
                         {feature.title}

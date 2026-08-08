@@ -87,9 +87,9 @@ export default function FaqSection() {
                         color: isOpen ? "rgb(57,255,20)" : "rgb(255,255,255)"
                       }}
                       transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
-                      className="flex-shrink-0 flex items-center justify-center size-10 rounded-full"
+                      className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full"
                     >
-                      <Plus className="size-5" />
+                      <Plus className="w-5 h-5" />
                     </motion.div>
                   </button>
 

@@ -44,7 +44,7 @@ export default function BackToTop() {
           aria-label="Volver arriba"
           className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-40 p-3 rounded-full bg-surface/80 backdrop-blur-xl border border-white/10 text-foreground hover:bg-white/10 hover:text-accent shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-colors focus-visible:outline-accent"
         >
-          <ArrowUp className="size-5" />
+          <ArrowUp className="w-5 h-5" />
         </motion.button>
       )}
     </AnimatePresence>

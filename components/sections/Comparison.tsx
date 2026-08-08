@@ -46,7 +46,7 @@ export default function Comparison() {
             
             <div className="relative z-10">
               <h3 className="font-display text-xl font-bold text-white/60 mb-8 flex items-center gap-3">
-                <XCircle className="size-5 text-red-400/50" />
+                <XCircle className="w-5 h-5 text-red-400/50" />
                 El método antiguo
               </h3>
               
@@ -80,7 +80,7 @@ export default function Comparison() {
             
             <div className="relative z-10">
               <h3 className="font-display text-xl font-bold text-foreground mb-8 flex items-center gap-3">
-                <CheckCircle2 className="size-5 text-accent" />
+                <CheckCircle2 className="w-5 h-5 text-accent" />
                 Bitácora Fit
               </h3>
               
@@ -93,7 +93,7 @@ export default function Comparison() {
                   "Funciona 100% offline sin problemas"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-foreground">
-                    <CheckCircle2 className="size-5 text-accent shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                     <span className="text-base font-medium leading-snug">{item}</span>
                   </li>
                 ))}

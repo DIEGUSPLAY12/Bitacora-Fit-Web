@@ -55,7 +55,7 @@ function StepBlock({
         className="max-w-md transition-opacity duration-500 ease-in-out"
         style={{ opacity: isInView ? 1 : 0.2 }}
       >
-        <div className="mb-4 flex size-10 md:size-12 items-center justify-center rounded-2xl bg-accent text-background font-bold text-lg md:text-xl">
+        <div className="mb-4 flex w-10 h-10 md:w-12 h-12 items-center justify-center rounded-2xl bg-accent text-background font-bold text-lg md:text-xl">
           {step.id}
         </div>
         <h3 className="font-display text-2xl md:text-3xl font-bold tracking-tight text-foreground mb-4 text-balance">

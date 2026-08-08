@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <!-- Reemplaza el enlace de la imagen por el logo de tu proyecto -->
+  <img src="public/logo.png" alt="Bitácora Fit Logo" width="120" />
 
-## Getting Started
+  # Bitácora Fit
+  **Menos distracciones. Más discos en la barra.** 🏋️‍♂️
+</div>
 
-First, run the development server:
+<br />
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 💡 ¿Qué es Bitácora Fit?
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+¿Cansado de apps de fitness que parecen redes sociales o te bombardean con anuncios de suplementos mientras intentas recordar cuánto peso levantaste la semana pasada? **Nosotros también.**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Bitácora Fit** nace de una necesidad muy clara: tener una herramienta de registro de entrenamientos que sea rápida, minimalista y que vaya directo al grano. Sin funciones sociales innecesarias, sin suscripciones ocultas, y con un diseño *Industrial Brutalism* oscuro que no te dejará ciego en medio del gimnasio. 
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Resolvamos el problema de perder el tiempo en el móvil durante tus descansos. Abre la app, anota tus series, visualiza tu progreso y vuelve a entrenar. Así de simple.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ✨ Características Principales
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+⚡ **Diseño Ultra-Rápido**  
+Una interfaz brutalista y limpia, optimizada para que registrar tus levantamientos te tome segundos, no minutos.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📈 **Analítica Avanzada (Sin Premium)**  
+Observa tu volumen de entrenamiento, tonelaje total y evolución de tu Repetición Máxima (1RM) con gráficos claros y directos.
 
-## Deploy on Vercel
+🎯 **Modo Concentración Absoluta**  
+Cero distracciones. Cero anuncios. Cero notificaciones sociales. Tu único rival es tu récord anterior.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+📱 **Totalmente Responsive**  
+Diseñada "mobile-first" para sentirse como una app nativa en tu teléfono mientras estás en el rack de sentadillas.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📸 Tour Visual (Galería)
+
+*Aquí tienes un recorrido por la experiencia de usuario de Bitácora Fit. (Inserta tus capturas de pantalla reemplazando los enlaces de ejemplo).*
+
+<br />
+
+<div align="center">
+  
+  ### 🏠 Pantalla Principal
+  <!-- Placeholder para captura de la pantalla principal -->
+  <img src="https://via.placeholder.com/800x450/121212/D9F200?text=Captura+de+Pantalla+Principal" alt="Pantalla Principal" width="100%" />
+  <p><em>Acceso inmediato a tu racha de entrenamientos y rutinas guardadas. Todo a un tap de distancia.</em></p>
+
+  <br />
+
+  ### 📝 Registro de Series
+  <!-- Placeholder para captura de la pantalla de registro de entrenamiento -->
+  <img src="https://via.placeholder.com/800x450/121212/D9F200?text=Captura+Registro+de+Series" alt="Registro de Series" width="100%" />
+  <p><em>Introduce el peso y las repeticiones con una interfaz diseñada para ser usada con una sola mano.</em></p>
+
+  <br />
+
+  ### 📊 Gráficos de Progreso
+  <!-- Placeholder para captura de los gráficos de evolución -->
+  <img src="https://via.placeholder.com/800x450/121212/D9F200?text=Captura+Graficos+de+Progreso" alt="Gráficos de Progreso" width="100%" />
+  <p><em>Tus récords personales y el tonelaje mensual convertidos en métricas tangibles y visuales.</em></p>
+
+</div>
+
+---
+
+<div align="center">
+  <b>Creada por y para gente que se toma en serio el gimnasio.</b>
+</div>

@@ -29,11 +29,7 @@ export default function ProgressChartSection() {
       ref={containerRef} 
       className="py-content-mobile md:py-content-desktop px-5 bg-background relative overflow-hidden"
     >
-      {/* Luz ambiental difusa de fondo */}
-      <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-accent/5 blur-[120px] rounded-[100%] pointer-events-none -z-10" 
-        aria-hidden 
-      />
+
       
       <div className="mx-auto max-w-6xl relative z-10 flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
         
@@ -73,14 +69,8 @@ export default function ProgressChartSection() {
         
         {/* Columna del Gráfico (Double-Bezel Architecture) */}
         <div className="flex-1 w-full max-w-xl">
-          {/* Outer Shell (Bisel exterior) */}
-          <div className="p-2 md:p-3 bg-white/[0.02] border border-white/5 rounded-[2.5rem] shadow-2xl relative">
-            
-            {/* Elemento de destello en el borde */}
-            <div className="absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent opacity-50" />
-            
-            {/* Inner Core (Núcleo interno con el gráfico) */}
-            <div className="bg-[#0A0A0A] border border-white/10 rounded-[calc(2.5rem-0.75rem)] p-6 md:p-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] relative overflow-hidden h-[320px] md:h-[350px] flex flex-col justify-end">
+          {/* Contenedor principal del gráfico */}
+          <div className="bg-surface/50 border border-white/10 rounded-2xl p-6 md:p-10 shadow-2xl relative overflow-hidden h-[320px] md:h-[350px] flex flex-col justify-end">
               
               {/* Rejilla de fondo (Grid) */}
               <div className="absolute inset-0 p-10 flex flex-col justify-between opacity-[0.03] pointer-events-none">
@@ -146,7 +136,6 @@ export default function ProgressChartSection() {
               {/* Suelo del gráfico con gradiente de desvanecimiento */}
               <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0A0A0A] to-transparent pointer-events-none z-0" />
             </div>
-          </div>
         </div>
 
       </div>

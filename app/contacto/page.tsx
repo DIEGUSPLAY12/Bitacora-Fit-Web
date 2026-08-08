@@ -69,8 +69,7 @@ export default function ContactoPage() {
           <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16">
             {/* Form */}
             <div className="lg:col-span-3">
-              <div className="p-1.5 md:p-2 bg-white/[0.02] border border-white/5 rounded-[2rem] shadow-lg">
-                <div className="rounded-[calc(2rem-0.375rem)] md:rounded-[calc(2rem-0.5rem)] border border-white/10 bg-surface/50 p-6 md:p-10">
+              <div className="rounded-[1.5rem] border border-white/10 bg-surface p-6 md:p-10 shadow-lg">
                   {formState === "idle" ? (
                     <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                       <div>
@@ -139,7 +138,6 @@ export default function ContactoPage() {
                       </button>
                     </div>
                   )}
-                </div>
               </div>
             </div>
 

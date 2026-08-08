@@ -54,9 +54,8 @@ export default function BlogPage() {
                   href={`/blog/${post.slug}`}
                   className="group"
                 >
-                  {/* Double-bezel card */}
-                  <div className="h-full p-1.5 md:p-2 bg-white/[0.02] border border-white/5 rounded-[2rem] shadow-lg transition-transform duration-500 ease-out motion-safe:group-hover:scale-[0.98]">
-                    <div className="h-full rounded-[calc(2rem-0.375rem)] md:rounded-[calc(2rem-0.5rem)] border border-white/10 bg-surface/50 p-6 md:p-8 flex flex-col transition-colors duration-500 group-hover:bg-surface/80">
+                  {/* Flat card */}
+                  <div className="h-full rounded-[1.5rem] border border-white/10 bg-surface p-6 md:p-8 flex flex-col shadow-lg transition-all duration-500 ease-out motion-safe:group-hover:scale-[0.98] group-hover:bg-surface/80 group-hover:border-white/20">
                       {/* Tag + Meta */}
                       <div className="flex items-center gap-3 mb-4">
                         <span
@@ -90,7 +89,6 @@ export default function BlogPage() {
                           <ArrowRight className="size-3" />
                         </span>
                       </div>
-                    </div>
                   </div>
                 </Link>
               ))}

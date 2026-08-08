@@ -47,7 +47,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <main>
         {/* Breadcrumb + Hero */}
         <section className="relative pt-32 md:pt-40 pb-12 md:pb-16 px-5 overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[400px] bg-accent/5 blur-[120px] rounded-[100%] pointer-events-none -z-10" aria-hidden />
+
 
           <div className="mx-auto max-w-3xl">
             {/* Breadcrumb */}

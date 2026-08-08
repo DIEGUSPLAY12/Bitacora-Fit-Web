@@ -35,9 +35,8 @@ export default function NovedadesPage() {
             {NOVEDADES.map((novedad) => (
               <article
                 key={novedad.id}
-                className="group p-1.5 md:p-2 bg-white/[0.02] border border-white/5 rounded-[2rem] shadow-lg"
+                className="group rounded-[1.5rem] border border-white/10 bg-surface overflow-hidden shadow-lg transition-all duration-500 hover:bg-surface/80 hover:border-white/20"
               >
-                <div className="rounded-[calc(2rem-0.375rem)] md:rounded-[calc(2rem-0.5rem)] border border-white/10 bg-surface/50 overflow-hidden transition-colors duration-500 group-hover:bg-surface/80">
                   {/* Image */}
                   <div className="relative w-full aspect-[16/9] md:aspect-[21/9] bg-background overflow-hidden">
                     <Image
@@ -63,7 +62,6 @@ export default function NovedadesPage() {
                       {novedad.description}
                     </p>
                   </div>
-                </div>
               </article>
             ))}
           </div>

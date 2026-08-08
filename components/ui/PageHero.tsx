@@ -14,11 +14,7 @@ export default function PageHero({ tag, title, subtitle }: PageHeroProps) {
 
   return (
     <section className="relative pt-32 md:pt-40 pb-16 md:pb-24 px-5 overflow-hidden">
-      {/* Glow de fondo */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[400px] bg-accent/8 blur-[120px] rounded-[100%] pointer-events-none -z-10"
-        aria-hidden
-      />
+
 
       <div className="mx-auto max-w-4xl text-center flex flex-col items-center">
         {/* Badge */}

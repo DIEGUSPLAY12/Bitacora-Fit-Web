@@ -100,9 +100,8 @@ export default function SobrePage() {
                 return (
                   <div
                     key={principio.title}
-                    className="p-1.5 md:p-2 bg-white/[0.02] border border-white/5 rounded-[2rem] shadow-lg"
+                    className="h-full rounded-[1.5rem] border border-white/10 bg-surface p-6 md:p-8 shadow-lg"
                   >
-                    <div className="h-full rounded-[calc(2rem-0.5rem)] border border-white/10 bg-surface/50 p-6 md:p-8">
                       <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6">
                         <Icon className="size-5 text-accent" strokeWidth={2} />
                       </div>
@@ -112,7 +111,6 @@ export default function SobrePage() {
                       <p className="text-sm text-muted leading-relaxed">
                         {principio.description}
                       </p>
-                    </div>
                   </div>
                 );
               })}

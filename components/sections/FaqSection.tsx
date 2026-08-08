@@ -38,8 +38,7 @@ export default function FaqSection() {
 
   return (
     <section id="faq" ref={sectionRef} className="py-content-mobile md:py-content-desktop px-5 bg-background relative overflow-hidden">
-      {/* Luz difusa superior */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[300px] bg-white/[0.02] blur-[120px] rounded-[100%] pointer-events-none -z-10" aria-hidden />
+
 
       <div className="mx-auto w-full max-w-3xl relative z-10">
         <div className="text-center mb-12 md:mb-16 flex flex-col items-center">
@@ -66,12 +65,10 @@ export default function FaqSection() {
                   backgroundColor: isOpen ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.01)",
                 }}
                 transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
-                className="p-1 md:p-1.5 bg-white/[0.02] border border-white/5 rounded-[1.5rem] shadow-lg"
+                className={`border rounded-2xl shadow-lg transition-colors duration-500 ${
+                  isOpen ? "bg-surface border-white/10" : "bg-transparent border-transparent hover:bg-surface/30"
+                }`}
               >
-                {/* Inner Core (Double-Bezel) */}
-                <div className={`rounded-[calc(1.5rem-0.375rem)] border transition-colors duration-500 ${
-                  isOpen ? "bg-surface/50 border-white/10" : "bg-transparent border-transparent hover:bg-white/[0.02]"
-                }`}>
                   <button
                     onClick={() => toggleAccordion(index)}
                     className="w-full flex items-center justify-between p-5 md:p-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-[calc(1.5rem-0.375rem)]"
@@ -119,7 +116,6 @@ export default function FaqSection() {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </div>
               </motion.div>
             );
           })}

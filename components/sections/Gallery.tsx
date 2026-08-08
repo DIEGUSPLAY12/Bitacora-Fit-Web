@@ -129,9 +129,9 @@ export default function Gallery() {
           
           {/* ─── Columna izquierda: Texto sincronizado ─── */}
           <div className="w-full lg:w-2/5 text-center lg:text-left order-2 lg:order-1">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-6">
+            <div className="inline-block rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold text-accent bg-accent/10 mb-6 border border-accent/20">
               Así se ve
-            </p>
+            </div>
 
             <div className="relative min-h-[140px]">
               <AnimatePresence mode="wait">

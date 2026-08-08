@@ -92,8 +92,7 @@ export default function Hero() {
         aria-hidden
       />
 
-      {/* Glow Effect */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[400px] bg-accent/10 blur-[120px] rounded-[100%] pointer-events-none -z-10" aria-hidden />
+
 
       <div className="mx-auto max-w-6xl px-5 py-section-mobile md:py-section-desktop">
         <div className="flex flex-col md:flex-row md:items-center md:gap-16 gap-10">

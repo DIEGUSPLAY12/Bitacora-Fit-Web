@@ -16,8 +16,7 @@ export default function Comparison() {
 
   return (
     <section id="comparison" ref={sectionRef} className="py-content-mobile md:py-content-desktop px-5 bg-surface/30 border-y border-white/5 relative overflow-hidden">
-      {/* Luz difusa de fondo */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[300px] bg-accent/5 blur-[120px] rounded-[100%] pointer-events-none -z-10" aria-hidden />
+
 
       <div className="mx-auto w-full max-w-5xl relative z-10">
         <div className="text-center mb-12 md:mb-16 flex flex-col items-center">

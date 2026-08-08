@@ -27,7 +27,7 @@ export default function ProgressChartSection() {
   return (
     <section 
       ref={containerRef} 
-      className="py-16 md:py-24 px-5 bg-background relative overflow-hidden"
+      className="py-content-mobile md:py-content-desktop px-5 bg-background relative overflow-hidden"
     >
       {/* Luz ambiental difusa de fondo */}
       <div 
@@ -42,7 +42,7 @@ export default function ProgressChartSection() {
           <div className="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold text-accent bg-accent/10 mb-6 border border-accent/20">
             Analítica Avanzada
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-6 leading-[1.1] text-balance">
+          <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6 leading-[1.1] text-balance">
             Compite contra tus <br className="hidden md:block" /> propios datos
           </h2>
           <p className="text-base md:text-lg text-muted/90 mb-10 leading-relaxed max-w-lg text-balance">

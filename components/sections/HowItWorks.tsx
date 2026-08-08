@@ -58,7 +58,7 @@ function StepBlock({
         <div className="mb-4 flex size-10 md:size-12 items-center justify-center rounded-2xl bg-accent text-background font-bold text-lg md:text-xl">
           {step.id}
         </div>
-        <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-foreground mb-4 text-balance">
+        <h3 className="font-display text-2xl md:text-3xl font-bold tracking-tight text-foreground mb-4 text-balance">
           {step.title}
         </h3>
         <p className="text-base md:text-lg leading-relaxed text-muted text-balance">

@@ -50,7 +50,7 @@ export default function Features() {
     <section
       id="features"
       ref={containerRef}
-      className="py-16 md:py-24 relative overflow-hidden"
+      className="py-content-mobile md:py-content-desktop relative overflow-hidden"
     >
       <div className="mx-auto max-w-6xl px-5 relative z-10">
         
@@ -59,7 +59,7 @@ export default function Features() {
           <div className="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold text-muted bg-white/5 mb-6 border border-white/10">
             Flujo de trabajo
           </div>
-          <h2 className="text-3xl md:text-4xl leading-[1.1] font-bold tracking-tight text-foreground mb-6 text-balance">
+          <h2 className="font-display text-4xl md:text-5xl leading-[1.1] font-bold tracking-tight text-foreground mb-6 text-balance">
             Todo lo que necesitas, <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-muted">nada más.</span>
           </h2>
@@ -116,7 +116,7 @@ export default function Features() {
                       <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:bg-white/10">
                         <Icon className="size-5 text-accent" strokeWidth={2} aria-hidden />
                       </div>
-                      <h3 className="text-lg font-bold text-foreground mb-2 tracking-tight">
+                      <h3 className="font-display text-lg font-bold text-foreground mb-2 tracking-tight">
                         {feature.title}
                       </h3>
                       <p className="text-sm text-muted leading-relaxed max-w-md">

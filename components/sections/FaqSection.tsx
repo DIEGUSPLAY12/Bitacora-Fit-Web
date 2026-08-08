@@ -37,7 +37,7 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faq" ref={sectionRef} className="py-16 md:py-24 px-5 bg-background relative overflow-hidden">
+    <section id="faq" ref={sectionRef} className="py-content-mobile md:py-content-desktop px-5 bg-background relative overflow-hidden">
       {/* Luz difusa superior */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[300px] bg-white/[0.02] blur-[120px] rounded-[100%] pointer-events-none -z-10" aria-hidden />
 
@@ -46,7 +46,7 @@ export default function FaqSection() {
           <div className="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold text-muted bg-white/5 mb-6 border border-white/10">
             Soporte & Dudas
           </div>
-          <h2 className="text-3xl md:text-4xl leading-[1.1] font-bold tracking-tight text-foreground mb-6 text-balance">
+          <h2 className="font-display text-4xl md:text-5xl leading-[1.1] font-bold tracking-tight text-foreground mb-6 text-balance">
             Preguntas Frecuentes
           </h2>
           <p className="text-base md:text-lg text-muted/90 max-w-xl mx-auto leading-relaxed text-balance">

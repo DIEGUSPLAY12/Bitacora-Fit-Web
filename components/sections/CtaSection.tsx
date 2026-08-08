@@ -91,7 +91,7 @@ export default function CtaSection() {
             whileInView={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl md:text-5xl leading-[1.1] tracking-tight font-bold text-foreground max-w-3xl text-balance mb-6"
+            className="font-display text-3xl md:text-5xl leading-[1.1] tracking-tight font-bold text-foreground max-w-3xl text-balance mb-6"
           >
             Deja de entrenar de memoria. Empieza a medir tu progreso hoy.
           </motion.h2>

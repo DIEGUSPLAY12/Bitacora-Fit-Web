@@ -15,7 +15,7 @@ export default function Comparison() {
   });
 
   return (
-    <section id="comparison" ref={sectionRef} className="py-16 md:py-24 px-5 bg-surface/30 border-y border-white/5 relative overflow-hidden">
+    <section id="comparison" ref={sectionRef} className="py-content-mobile md:py-content-desktop px-5 bg-surface/30 border-y border-white/5 relative overflow-hidden">
       {/* Luz difusa de fondo */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[300px] bg-accent/5 blur-[120px] rounded-[100%] pointer-events-none -z-10" aria-hidden />
 
@@ -24,7 +24,7 @@ export default function Comparison() {
           <div className="rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold text-muted bg-white/5 mb-6 border border-white/10">
             Cambio de paradigma
           </div>
-          <h2 className="text-3xl md:text-4xl leading-[1.1] font-bold tracking-tight text-foreground mb-6 text-balance">
+          <h2 className="font-display text-4xl md:text-5xl leading-[1.1] font-bold tracking-tight text-foreground mb-6 text-balance">
             El problema vs La solución
           </h2>
           <p className="text-base md:text-lg text-muted/90 max-w-2xl mx-auto leading-relaxed text-balance">
@@ -46,7 +46,7 @@ export default function Comparison() {
             <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent pointer-events-none" />
             
             <div className="relative z-10">
-              <h3 className="text-xl font-bold text-white/60 mb-8 flex items-center gap-3">
+              <h3 className="font-display text-xl font-bold text-white/60 mb-8 flex items-center gap-3">
                 <XCircle className="size-5 text-red-400/50" />
                 El método antiguo
               </h3>
@@ -80,7 +80,7 @@ export default function Comparison() {
             <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent pointer-events-none" />
             
             <div className="relative z-10">
-              <h3 className="text-xl font-bold text-foreground mb-8 flex items-center gap-3">
+              <h3 className="font-display text-xl font-bold text-foreground mb-8 flex items-center gap-3">
                 <CheckCircle2 className="size-5 text-accent" />
                 Bitácora Fit
               </h3>

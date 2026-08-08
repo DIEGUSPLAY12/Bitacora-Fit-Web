@@ -14,10 +14,13 @@
 
   /* ── Typography – font family ─────────────────────────── */
   --font-sans: var(--font-inter);
+  --font-display: var(--font-space-grotesk);
 
   /* ── Spacing extras ───────────────────────────────────── */
   --spacing-section-mobile: 24px;
   --spacing-section-desktop: 64px;
+  --spacing-content-mobile: 80px;
+  --spacing-content-desktop: 128px;
 }
 
 /* ── Base resets ──────────────────────────────────────────── */

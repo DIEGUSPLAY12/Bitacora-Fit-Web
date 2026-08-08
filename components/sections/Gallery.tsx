@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const SCREENSHOTS = [
   {
-    src: `${BASE_PATH}/screenshots/login.png`,
+    src: "/screenshots/login.png`,
     alt: "Pantalla de inicio de sesión con acceso rápido a la app",
     width: 487,
     height: 925,
@@ -22,7 +22,7 @@ const SCREENSHOTS = [
       "Inicia sesión en segundos y empieza a registrar tu entreno sin perder tiempo.",
   },
   {
-    src: `${BASE_PATH}/screenshots/home.png`,
+    src: "/screenshots/home.png`,
     alt: "Pantalla de inicio con racha de entrenos y accesos rápidos",
     width: 487,
     height: 1105,
@@ -31,7 +31,7 @@ const SCREENSHOTS = [
       "Racha de entrenamientos, accesos directos y un resumen de tu semana en un solo vistazo.",
   },
   {
-    src: `${BASE_PATH}/screenshots/entrenar.png`,
+    src: "/screenshots/entrenar.png`,
     alt: "Registro de ejercicio con peso, series y repeticiones",
     width: 487,
     height: 1293,
@@ -40,7 +40,7 @@ const SCREENSHOTS = [
       "Añade peso, repeticiones y series de cada ejercicio con unos pocos toques.",
   },
   {
-    src: `${BASE_PATH}/screenshots/historial.png`,
+    src: "/screenshots/historial.png`,
     alt: "Historial de entrenamientos con volumen total por sesión",
     width: 487,
     height: 1467,
@@ -49,7 +49,7 @@ const SCREENSHOTS = [
       "Revisa cada sesión pasada con el volumen total y los ejercicios que hiciste.",
   },
   {
-    src: `${BASE_PATH}/screenshots/perfil.png`,
+    src: "/screenshots/perfil.png`,
     alt: "Perfil del usuario con estadísticas y configuración",
     width: 487,
     height: 1530,

@@ -11,21 +11,21 @@ const STEPS = [
     id: 1,
     title: "1. Entras al gym, abres la app",
     description: "De un vistazo sabes qué te toca hoy y cuál es tu racha actual. Sin tiempos de carga eternos ni distracciones.",
-    image: `${BASE_PATH}/screenshots/home.png`,
+    image: "/screenshots/home.png`,
     alt: "Pantalla principal de Bitácora Fit"
   },
   {
     id: 2,
     title: "2. Apuntas peso y repeticiones al vuelo",
     description: "Interfaz diseñada para que introduzcas tus series con el pulgar en 2 segundos y te centres en descansar para la siguiente.",
-    image: `${BASE_PATH}/screenshots/entrenar.png`,
+    image: "/screenshots/entrenar.png`,
     alt: "Pantalla de registro de entrenamiento"
   },
   {
     id: 3,
     title: "3. Analizas el impacto de tu esfuerzo",
     description: "Revisa tu historial, observa gráficas de volumen total y comprende realmente si estás progresando a lo largo de las semanas.",
-    image: `${BASE_PATH}/screenshots/historial.png`,
+    image: "/screenshots/historial.png`,
     alt: "Pantalla de historial y analíticas"
   }
 ];

@@ -63,8 +63,7 @@ export default function Header() {
         
         {/* Logo */}
         <Link 
-          href="#" 
-          onClick={(e) => handleScrollTo(e as any, "body")}
+          href="/" 
           className="pl-2 transition-opacity hover:opacity-80"
         >
           <Brand iconClassName="w-5 h-5 md:w-6 md:h-6" textClassName="text-base md:text-lg font-bold tracking-tight text-foreground" />

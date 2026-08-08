@@ -14,7 +14,7 @@ export default function DownloadButton({ compact = false }: DownloadButtonProps)
   const reducedMotion = usePrefersReducedMotion();
   const [showToast, setShowToast] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const buttonRef = useRef<HTMLAnchorElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   // Magnetic hover physics
   const x = useMotionValue(0);
@@ -22,7 +22,7 @@ export default function DownloadButton({ compact = false }: DownloadButtonProps)
   const springX = useSpring(x, { stiffness: 150, damping: 15, mass: 0.1 });
   const springY = useSpring(y, { stiffness: 150, damping: 15, mass: 0.1 });
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (reducedMotion || !buttonRef.current) return;
     const rect = buttonRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
@@ -38,7 +38,7 @@ export default function DownloadButton({ compact = false }: DownloadButtonProps)
     y.set(0);
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setShowToast(true);
     if (timerRef.current) clearTimeout(timerRef.current);
@@ -55,9 +55,9 @@ export default function DownloadButton({ compact = false }: DownloadButtonProps)
 
   return (
     <>
-      <motion.a
+      <motion.button
+        type="button"
         ref={buttonRef}
-        href="#"
         onClick={handleClick}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -73,7 +73,7 @@ export default function DownloadButton({ compact = false }: DownloadButtonProps)
         ].join(" ")}
       >
         {compact ? "Descargar" : "Descargar para Android"}
-      </motion.a>
+      </motion.button>
 
       <AnimatePresence>
         {showToast && (

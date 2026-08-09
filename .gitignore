@@ -40,7 +40,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# AI Agent Skills (Ignorar descargas de skills)
+# AI Agent Skills / Instrucciones privadas (no publicar en repo público)
+data/skills/
+skills/
+skills-lock.json
+
+# AI Agent IDE config dirs (Ignorar descargas de skills)
 .agents/
 .claude/
 .cursor/

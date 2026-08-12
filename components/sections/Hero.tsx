@@ -161,7 +161,7 @@ export default function Hero() {
           </div>
 
           {/* ── Mockup ────────────────────────────────── */}
-          <div className="flex-1 flex justify-center md:justify-end" style={{ transformStyle: "preserve-3d" }}>
+          <div className="flex-1 flex justify-center md:justify-end mb-20 md:mb-0" style={{ transformStyle: "preserve-3d" }}>
             <motion.div 
               ref={mockupRef}
               initial={reducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.95 }}

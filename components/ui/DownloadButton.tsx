@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence, useMotionValue, useSpring } from "motion/react";
+import { useRef } from "react";
+import { motion, useMotionValue, useSpring } from "motion/react";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 interface DownloadButtonProps {
@@ -12,9 +12,7 @@ const spring = { type: "spring" as const, stiffness: 400, damping: 25 };
 
 export default function DownloadButton({ compact = false }: DownloadButtonProps) {
   const reducedMotion = usePrefersReducedMotion();
-  const [showToast, setShowToast] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonRef = useRef<HTMLAnchorElement>(null);
 
   // Magnetic hover physics
   const x = useMotionValue(0);
@@ -22,7 +20,7 @@ export default function DownloadButton({ compact = false }: DownloadButtonProps)
   const springX = useSpring(x, { stiffness: 150, damping: 15, mass: 0.1 });
   const springY = useSpring(y, { stiffness: 150, damping: 15, mass: 0.1 });
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (reducedMotion || !buttonRef.current) return;
     const rect = buttonRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
@@ -38,27 +36,13 @@ export default function DownloadButton({ compact = false }: DownloadButtonProps)
     y.set(0);
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setShowToast(true);
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => {
-      setShowToast(false);
-    }, 2500);
-  };
-
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, []);
-
   return (
     <>
-      <motion.button
-        type="button"
+      <motion.a
+        href="https://expo.dev/accounts/diegusplay12/projects/Bitacora-Fit-App/builds/29463deb-76f3-4d84-ad5a-292d83af2d12"
+        target="_blank"
+        rel="noopener noreferrer"
         ref={buttonRef}
-        onClick={handleClick}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         style={{ x: springX, y: springY }}
@@ -73,21 +57,7 @@ export default function DownloadButton({ compact = false }: DownloadButtonProps)
         ].join(" ")}
       >
         {compact ? "Descargar" : "Descargar para Android"}
-      </motion.button>
-
-      <AnimatePresence>
-        {showToast && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, x: "-50%" }}
-            animate={{ opacity: 1, y: 0, x: "-50%" }}
-            exit={{ opacity: 0, y: 10, x: "-50%" }}
-            transition={{ duration: 0.2 }}
-            className="fixed bottom-10 left-1/2 px-4 py-3 text-sm font-medium text-foreground bg-surface border border-[#2A2A2A] rounded-full shadow-lg pointer-events-none z-[100]"
-          >
-            Disponible muy pronto
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </motion.a>
     </>
   );
 }

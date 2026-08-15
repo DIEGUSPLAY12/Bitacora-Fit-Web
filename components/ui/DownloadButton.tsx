@@ -39,7 +39,7 @@ export default function DownloadButton({ compact = false }: DownloadButtonProps)
   return (
     <>
       <motion.a
-        href="https://expo.dev/accounts/diegusplay12/projects/Bitacora-Fit-App/builds/5324b2fc-6309-4803-89da-590a99845a48"
+        href="https://expo.dev/accounts/diegusplay12/projects/Bitacora-Fit-App/builds/530e0d9a-3f78-4df8-93c9-2856c964ca79"
         target="_blank"
         rel="noopener noreferrer"
         ref={buttonRef}

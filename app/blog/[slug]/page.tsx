@@ -6,6 +6,7 @@ import PageHeader from "@/components/ui/PageHeader";
 import DownloadButton from "@/components/ui/DownloadButton";
 import Footer from "@/components/sections/Footer";
 import { BLOG_POSTS } from "@/data/blog";
+import { ContentRenderer } from "@/lib/content";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -81,17 +82,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <section className="pb-16 md:pb-24 px-5">
           <div className="mx-auto max-w-3xl">
             <div
-              className="
-                prose-custom
-                text-base md:text-lg text-muted leading-relaxed
-                [&_h2]:font-display [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-bold [&_h2]:text-foreground [&_h2]:tracking-tight [&_h2]:mt-12 [&_h2]:mb-4
-                [&_p]:mb-6
-                [&_ul]:mb-6 [&_ul]:pl-6 [&_ul]:space-y-2
-                [&_li]:text-muted [&_li]:leading-relaxed
-                [&_strong]:text-foreground [&_strong]:font-semibold
-              "
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
+              className="text-base md:text-lg text-muted leading-relaxed"
+            >
+              <ContentRenderer blocks={post.content} />
+            </div>
           </div>
         </section>
 

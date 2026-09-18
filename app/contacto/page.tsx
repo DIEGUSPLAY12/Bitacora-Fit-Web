@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import {
   Mail,
@@ -19,7 +19,12 @@ const CONTACT_EMAIL = "contacto@bitacorafit.app";
 
 // Clave pública de Web3Forms — segura en el frontend por diseño.
 // No da acceso a la cuenta, solo identifica el endpoint de destino.
-const WEB3FORMS_KEY = "26f586e2-53ab-4e7f-b4c5-e5bb1d0528e1";
+// Configura NEXT_PUBLIC_WEB3FORMS_KEY en tu .env.local (y en GitHub Secrets
+// si usas CI/CD) para poder restringir la clave por dominio en el dashboard de Web3Forms.
+const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "26f586e2-53ab-4e7f-b4c5-e5bb1d0528e1";
+
+/** Tiempo mínimo entre envíos del formulario (ms) para frenar ráfagas de spam. */
+const SUBMIT_COOLDOWN_MS = 60_000;
 
 const CONTACT_CARDS = [
   {
@@ -72,6 +77,8 @@ export default function ContactoPage() {
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [serverError, setServerError] = useState("");
+  // Timestamp del último envío exitoso — previene ráfagas de peticiones
+  const lastSentRef = useRef<number | null>(null);
 
   // Valida un campo individual al perder el foco
   const handleBlur = (
@@ -99,6 +106,14 @@ export default function ContactoPage() {
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
       setTouched({ name: true, email: true, message: true });
+      return;
+    }
+
+    // Rate limiting client-side: bloquear si no ha pasado el cooldown
+    if (lastSentRef.current !== null && Date.now() - lastSentRef.current < SUBMIT_COOLDOWN_MS) {
+      const remaining = Math.ceil((SUBMIT_COOLDOWN_MS - (Date.now() - lastSentRef.current)) / 1000);
+      setServerError(`Por favor espera ${remaining} segundos antes de volver a enviar.`);
+      setStatus("error");
       return;
     }
 
@@ -130,6 +145,7 @@ export default function ContactoPage() {
 
       if (res.ok && result.success) {
         setStatus("success");
+        lastSentRef.current = Date.now(); // registrar timestamp para el cooldown
         form.reset();
         setTouched({});
         setFieldErrors({});

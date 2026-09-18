@@ -22,6 +22,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://diegusplay12.github.io"),
   title: "Bitácora Fit",
   description:
     "Bitácora Fit es la app para registrar peso, series y repeticiones en el gimnasio. Lleva el control real de tu progreso y entrena con datos, no con memoria.",

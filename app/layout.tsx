@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { LazyMotion, domAnimation } from "motion/react";
 import SmoothScroll from "@/components/ui/SmoothScroll";
@@ -63,11 +64,13 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
     <html lang="es" className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>
       <body className="flex flex-col bg-background text-foreground relative selection:bg-accent selection:text-background">
         <ScrollProgress />
-        <SplashScreen />
         <BackgroundEffects />
         <NoiseOverlay />
         <SmoothScroll>
           <LazyMotion features={domAnimation}>
+            <Suspense fallback={null}>
+              <SplashScreen />
+            </Suspense>
             {children}
           </LazyMotion>
         </SmoothScroll>

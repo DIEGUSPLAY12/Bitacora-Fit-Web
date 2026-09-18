@@ -1,24 +1,46 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { m, AnimatePresence } from "motion/react";
-import Image from "next/image";
-import { BASE_PATH } from "@/lib/constants";
+import { usePathname, useSearchParams } from "next/navigation";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import LogoIcon from "@/components/ui/LogoIcon";
+
+const SECONDARY_PAGES = ["/blog", "/novedades", "/contacto"];
 
 export default function SplashScreen() {
   const [isVisible, setIsVisible] = useState(true);
   const reducedMotion = usePrefersReducedMotion();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const prevPathname = useRef<string | null>(null);
 
   useEffect(() => {
-    // La pantalla de carga se oculta 600ms después de que la app se monte en el cliente
-    // Esto es suficiente para ocultar cualquier FOUC (Flash of Unstyled Content) o layout shifts
+    // Helper para comprobar si una ruta pertenece a las páginas secundarias
+    const isSecondary = (path: string) => SECONDARY_PAGES.some(p => path.startsWith(p));
+
+    // Si navegamos ENTRE páginas secundarias, evitamos mostrar la pantalla de carga
+    if (
+      prevPathname.current !== null && 
+      isSecondary(prevPathname.current) && 
+      isSecondary(pathname)
+    ) {
+      prevPathname.current = pathname;
+      return;
+    }
+
+    // En cualquier otro caso, mostramos la pantalla de carga
+    setIsVisible(true);
+    
+    // Ocultamos con una transición suave después de un instante
     const timer = setTimeout(() => {
       setIsVisible(false);
-    }, 600);
+    }, 800); // 800ms permite ver exactamente 1 ciclo de la animación de latido
+
+    prevPathname.current = pathname;
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [pathname, searchParams]);
 
   return (
     <AnimatePresence>
@@ -28,45 +50,51 @@ export default function SplashScreen() {
           exit={{ opacity: 0 }}
           transition={{
             duration: reducedMotion ? 0.2 : 0.6,
-            ease: [0.32, 0.72, 0, 1],
+            ease: [0.32, 0.72, 0, 1], // Fade out muy suave y premium
           }}
           className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-background"
         >
           <m.div
-            initial={{ scale: 0.9, opacity: 0 }}
+            initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 1.1, opacity: 0 }}
+            exit={{ scale: 1.05, opacity: 0 }}
             transition={{
-              duration: 0.5,
-              ease: [0.32, 0.72, 0, 1],
+              duration: 0.4,
+              ease: "easeOut",
             }}
-            className="relative flex flex-col items-center"
+            className="relative flex items-center justify-center w-32 h-32 md:w-40 md:h-40"
           >
-            {/* Logo o Icono animado */}
-            <div className="w-20 h-20 md:w-24 md:h-24 relative mb-6">
-              <Image
-                src={`${BASE_PATH}/images/Logo.png`}
-                alt="Cargando Bitácora Fit..."
-                fill
-                priority
-                className="object-contain"
-                sizes="(max-width: 768px) 80px, 96px"
-              />
-            </div>
-            
-            {/* Indicador de carga premium (glow) */}
-            <div className="w-32 h-1 bg-white/10 rounded-full overflow-hidden relative">
+            {/* Anillo de carga (Spinner "Repetición") */}
+            {!reducedMotion ? (
               <m.div
-                initial={{ x: "-100%" }}
-                animate={{ x: "100%" }}
+                animate={{ rotate: 360 }}
                 transition={{
                   repeat: Infinity,
-                  duration: 1,
-                  ease: "linear",
+                  duration: 1.2,
+                  ease: "easeInOut", // easeInOut simula el esfuerzo concéntrico/excéntrico de una repetición
                 }}
-                className="absolute inset-y-0 left-0 w-1/2 bg-accent shadow-[0_0_10px_rgba(57,255,20,0.8)] rounded-full"
+                className="absolute inset-0 rounded-full border-[3px] border-white/5 border-t-accent shadow-[0_0_15px_rgba(163,230,53,0.15)]"
               />
-            </div>
+            ) : (
+              <div className="absolute inset-0 rounded-full border-[3px] border-white/5 border-t-accent" />
+            )}
+            
+            {/* Logo Central (Efecto Latido / Respiración) */}
+            <m.div
+              animate={
+                !reducedMotion
+                  ? { scale: [1, 1.08, 1] }
+                  : { scale: 1 }
+              }
+              transition={{
+                repeat: Infinity,
+                duration: 1.2,
+                ease: "easeInOut",
+              }}
+              className="w-14 h-14 md:w-16 md:h-16 text-accent flex items-center justify-center"
+            >
+              <LogoIcon className="w-full h-full drop-shadow-[0_0_12px_rgba(163,230,53,0.3)]" />
+            </m.div>
           </m.div>
         </m.div>
       )}

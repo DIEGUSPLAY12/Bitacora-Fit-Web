@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { m, AnimatePresence } from "motion/react";
 import { Menu, X, ArrowLeft } from "lucide-react";
 import DownloadButton from "@/components/ui/DownloadButton";
@@ -18,6 +19,7 @@ const NAV_LINKS = [
 export default function PageHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const reducedMotion = usePrefersReducedMotion();
+  const pathname = usePathname();
 
   return (
     <>
@@ -34,16 +36,31 @@ export default function PageHeader() {
 
         {/* Desktop Links */}
         <ul className="hidden md:flex items-center gap-1">
-          {NAV_LINKS.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="px-4 py-2 text-sm font-medium text-muted hover:text-foreground transition-colors block rounded-full hover:bg-white/5"
-              >
-                {link.name}
-              </Link>
-            </li>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname.startsWith(link.href);
+            return (
+              <li key={link.href} className="relative">
+                <Link
+                  href={link.href}
+                  className={`relative z-10 px-4 py-2 text-sm font-medium transition-colors block ${
+                    isActive ? "text-background" : "text-muted hover:text-foreground"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+                {!reducedMotion && isActive && (
+                  <m.div
+                    layoutId="activeNavIndicatorPage"
+                    className="absolute inset-0 bg-accent rounded-full z-0"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  />
+                )}
+                {reducedMotion && isActive && (
+                  <div className="absolute inset-0 bg-accent rounded-full z-0" />
+                )}
+              </li>
+            );
+          })}
         </ul>
 
         {/* Action / Mobile Toggle */}
@@ -104,7 +121,9 @@ export default function PageHeader() {
                   Inicio
                 </Link>
               </m.li>
-              {NAV_LINKS.map((link, idx) => (
+              {NAV_LINKS.map((link, idx) => {
+                const isActive = pathname.startsWith(link.href);
+                return (
                 <m.li
                   key={link.href}
                   initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
@@ -115,12 +134,17 @@ export default function PageHeader() {
                   <Link
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block py-4 text-xl font-bold tracking-tight text-muted hover:text-foreground transition-colors border-b border-white/5"
+                    className={`block py-4 text-xl font-bold tracking-tight transition-colors border-b border-white/5 ${
+                        isActive 
+                          ? "text-accent" 
+                          : "text-muted hover:text-foreground"
+                    }`}
                   >
                     {link.name}
                   </Link>
                 </m.li>
-              ))}
+                );
+              })}
             </ul>
             {/* CTA en el footer del panel */}
             <div className="p-6 border-t border-white/5 flex justify-center">

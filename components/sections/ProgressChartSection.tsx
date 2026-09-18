@@ -50,7 +50,7 @@ export default function ProgressChartSection() {
               { num: "01", text: "Registra el tonelaje total" },
               { num: "02", text: "Observa la gráfica subir" },
               { num: "03", text: "Sube de rango estético" }
-            ].map((item) => (
+            ].map((item, idx) => (
               <m.div 
                 key={item.num}
                 className="flex items-center gap-4 group"

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import NoiseOverlay from "@/components/ui/NoiseOverlay";
+import BackgroundEffects from "@/components/ui/BackgroundEffects";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import BackToTop from "@/components/ui/BackToTop";
 import CookieBanner from "@/components/ui/CookieBanner";
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
     <html lang="es" className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>
       <body className="flex flex-col bg-background text-foreground relative selection:bg-accent selection:text-background">
         <ScrollProgress />
+        <BackgroundEffects />
         <NoiseOverlay />
         <SmoothScroll>{children}</SmoothScroll>
         <BackToTop />

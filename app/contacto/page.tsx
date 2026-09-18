@@ -364,6 +364,31 @@ export default function ContactoPage() {
                       )}
                     </div>
 
+                    {/* Checkbox de Privacidad (Obligatorio RGPD) */}
+                    <div className="flex items-start gap-3 mt-2">
+                      <div className="flex items-center h-5">
+                        <input
+                          id="privacy-consent"
+                          name="privacy"
+                          type="checkbox"
+                          required
+                          className="w-4 h-4 rounded border-white/20 bg-background/50 text-accent focus:ring-accent/50 focus:ring-offset-background transition-colors"
+                        />
+                      </div>
+                      <div className="text-sm text-muted">
+                        <label htmlFor="privacy-consent" className="font-medium text-foreground">
+                          Privacidad y Protección de Datos <span className="text-accent" aria-hidden="true">*</span>
+                        </label>
+                        <p className="mt-1 text-xs">
+                          He leído y acepto la{" "}
+                          <Link href="/privacidad" className="text-accent hover:underline">
+                            Política de Privacidad
+                          </Link>.
+                          Tus datos solo se usarán para responder a esta consulta.
+                        </p>
+                      </div>
+                    </div>
+
                     {/* Botón de envío */}
                     <button
                       type="submit"

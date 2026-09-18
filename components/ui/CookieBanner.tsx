@@ -6,30 +6,50 @@ import Link from "next/link";
 import { Cookie, X } from "lucide-react";
 
 const COOKIE_KEY = "bitacora-fit-cookie-consent";
+const EXPIRATION_DAYS = 365;
 
-type ConsentValue = "accepted" | "rejected" | null;
+type ConsentValue = "accepted" | "rejected";
+interface ConsentData {
+  status: ConsentValue;
+  expiresAt: number;
+}
 
 export default function CookieBanner() {
-  const [consent, setConsent] = useState<ConsentValue>(null);
+  const [consent, setConsent] = useState<ConsentValue | null>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const stored = localStorage.getItem(COOKIE_KEY) as ConsentValue;
-    if (stored === "accepted" || stored === "rejected") {
-      setConsent(stored);
+    const storedStr = localStorage.getItem(COOKIE_KEY);
+    if (storedStr) {
+      try {
+        // Soporte para formato antiguo (string plano "accepted")
+        if (storedStr === "accepted" || storedStr === "rejected") {
+          setConsent(storedStr as ConsentValue);
+          return;
+        }
+        
+        const stored: ConsentData = JSON.parse(storedStr);
+        if (stored.expiresAt > Date.now()) {
+          setConsent(stored.status);
+        } else {
+          // Caducado
+          localStorage.removeItem(COOKIE_KEY);
+        }
+      } catch (e) {
+        // En caso de error de parseo, ignoramos
+      }
     }
   }, []);
 
-  const handleAccept = () => {
-    localStorage.setItem(COOKIE_KEY, "accepted");
-    setConsent("accepted");
+  const saveConsent = (status: ConsentValue) => {
+    const expiresAt = Date.now() + EXPIRATION_DAYS * 24 * 60 * 60 * 1000;
+    localStorage.setItem(COOKIE_KEY, JSON.stringify({ status, expiresAt }));
+    setConsent(status);
   };
 
-  const handleReject = () => {
-    localStorage.setItem(COOKIE_KEY, "rejected");
-    setConsent("rejected");
-  };
+  const handleAccept = () => saveConsent("accepted");
+  const handleReject = () => saveConsent("rejected");
 
   // No renderizar hasta que el componente esté montado (evita hydration mismatch)
   if (!mounted || consent !== null) return null;

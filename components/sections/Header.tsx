@@ -37,9 +37,11 @@ export default function Header() {
     );
 
     NAV_LINKS.forEach((link) => {
-      // Usamos getElementById o querySelector
-      const el = document.querySelector(link.href);
-      if (el) observer.observe(el);
+      // Solo observar elementos de la misma página (empiezan por #)
+      if (link.href.startsWith("#")) {
+        const el = document.querySelector(link.href);
+        if (el) observer.observe(el);
+      }
     });
 
     return () => observer.disconnect();

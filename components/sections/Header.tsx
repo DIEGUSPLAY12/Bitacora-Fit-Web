@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { name: "Comparativa", href: "#comparison" },
   { name: "Galería", href: "#galeria" },
   { name: "FAQ", href: "#faq" },
+  { name: "Contacto", href: "/contacto" },
 ];
 
 export default function Header() {
@@ -45,6 +46,8 @@ export default function Header() {
   }, []);
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Si es un enlace a otra página, navegación normal
+    if (href.startsWith("/")) return;
     e.preventDefault();
     setIsMobileMenuOpen(false);
     const target = document.querySelector(href);

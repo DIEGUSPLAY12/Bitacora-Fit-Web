@@ -4,6 +4,7 @@ import SmoothScroll from "@/components/ui/SmoothScroll";
 import NoiseOverlay from "@/components/ui/NoiseOverlay";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import BackToTop from "@/components/ui/BackToTop";
+import CookieBanner from "@/components/ui/CookieBanner";
 import "./globals.css";
 
 const inter = Inter({
@@ -25,12 +26,27 @@ export const metadata: Metadata = {
   description:
     "Bitácora Fit es la app para registrar peso, series y repeticiones en el gimnasio. Lleva el control real de tu progreso y entrena con datos, no con memoria.",
   openGraph: {
-    title: "Bitácora Fit",
+    title: "Bitácora Fit — Registra tus entrenos, entrena con criterio",
     description:
       "App de registro de entrenamientos para Android. Controla tu peso, series y repeticiones y mide tu progreso real en el gimnasio.",
     type: "website",
     locale: "es_ES",
     siteName: "Bitácora Fit",
+    images: [
+      {
+        url: "/Bitacora-Fit-Web/og-image.jpg",
+        width: 1400,
+        height: 788,
+        alt: "Bitácora Fit — Registra tus entrenos, entrena con criterio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bitácora Fit",
+    description:
+      "App de registro de entrenamientos para Android. Controla tu peso, series y repeticiones y mide tu progreso real.",
+    images: ["/Bitacora-Fit-Web/og-image.jpg"],
   },
 };
 
@@ -46,6 +62,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
         <NoiseOverlay />
         <SmoothScroll>{children}</SmoothScroll>
         <BackToTop />
+        <CookieBanner />
       </body>
     </html>
   );

@@ -35,7 +35,7 @@ export default function NovedadesPage() {
             {NOVEDADES.map((novedad) => (
               <article
                 key={novedad.id}
-                className="group rounded-[1.5rem] border border-white/10 bg-surface overflow-hidden shadow-lg transition-all duration-500 hover:bg-surface/80 hover:border-white/20"
+                className="group rounded-[1.5rem] border border-white/10 bg-surface overflow-hidden shadow-lg transition duration-500 hover:bg-surface/80 hover:border-white/20"
               >
                   {/* Image */}
                   <div className="relative w-full aspect-[16/9] md:aspect-[21/9] bg-background overflow-hidden">

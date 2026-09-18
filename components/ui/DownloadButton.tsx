@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useMotionValue, useSpring } from "motion/react";
+import { m, useMotionValue, useSpring } from "motion/react";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 interface DownloadButtonProps {
@@ -38,7 +38,7 @@ export default function DownloadButton({ compact = false }: DownloadButtonProps)
 
   return (
     <>
-      <motion.a
+      <m.a
         href="https://expo.dev/accounts/diegusplay12/projects/Bitacora-Fit-App/builds/7f27eee3-d695-4d82-8ce5-be2e1afb278c"
         target="_blank"
         rel="noopener noreferrer"
@@ -57,7 +57,7 @@ export default function DownloadButton({ compact = false }: DownloadButtonProps)
         ].join(" ")}
       >
         {compact ? "Descargar" : "Descargar para Android"}
-      </motion.a>
+      </m.a>
     </>
   );
 }

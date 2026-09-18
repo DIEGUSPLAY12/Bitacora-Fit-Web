@@ -73,7 +73,7 @@ export function useScrollReveal<T extends HTMLElement>({
       tween.scrollTrigger?.kill();
       tween.kill();
     };
-  }, [reducedMotion, staggerSelector, staggerDelay]);
+  }, [reducedMotion, staggerSelector, staggerDelay, yOffset, duration, ease, ref]);
 
   return ref;
 }

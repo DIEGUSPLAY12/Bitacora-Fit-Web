@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "motion/react";
+import { m, useInView } from "motion/react";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 // Datos simulados para el gráfico de barras
@@ -50,19 +50,19 @@ export default function ProgressChartSection() {
               { num: "01", text: "Registra el tonelaje total" },
               { num: "02", text: "Observa la gráfica subir" },
               { num: "03", text: "Sube de rango estético" }
-            ].map((item, idx) => (
-              <motion.div 
-                key={idx}
+            ].map((item) => (
+              <m.div 
+                key={item.num}
                 className="flex items-center gap-4 group"
                 initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                 transition={{ duration: 0.8, delay: 0.2 + idx * 0.1, ease: customEase }}
               >
-                <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent font-bold text-xs group-hover:scale-105 group-hover:bg-accent/10 transition-all duration-500">
+                <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent font-bold text-xs group-hover:scale-105 group-hover:bg-accent/10 transition duration-500">
                   {item.num}
                 </div>
                 <span className="text-foreground font-medium text-base">{item.text}</span>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -75,12 +75,12 @@ export default function ProgressChartSection() {
               {/* Rejilla de fondo (Grid) */}
               <div className="absolute inset-0 p-10 flex flex-col justify-between opacity-[0.03] pointer-events-none">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-full h-px bg-white" />
+                  <div key={`grid-line-${i}`} className="w-full h-px bg-white" />
                 ))}
               </div>
               
               {/* Etiqueta flotante (Tooltip premium) */}
-              <motion.div 
+              <m.div 
                 className="absolute right-8 top-8 bg-surface/80 backdrop-blur-md border border-white/10 text-white px-4 py-2 rounded-full shadow-2xl z-20 flex items-center gap-2"
                 initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20, scale: 0.9 }}
                 animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.9 }}
@@ -88,17 +88,17 @@ export default function ProgressChartSection() {
               >
                 <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
                 <span className="text-sm font-semibold tracking-wide">Récord Histórico</span>
-              </motion.div>
+              </m.div>
 
               {/* Gráfico de Barras Animado */}
               <div className="relative w-full h-[200px] md:h-[220px] flex items-end justify-between gap-2 md:gap-4 z-10">
                 {CHART_DATA.map((data, index) => {
                   const isMax = data.value === 100;
                   return (
-                    <div key={index} className="relative flex flex-col items-center justify-end h-full w-full group">
+                    <div key={data.label} className="relative flex flex-col items-center justify-end h-full w-full group">
                       
                       {/* Barra */}
-                      <motion.div
+                      <m.div
                         className={`w-full rounded-t-sm md:rounded-t-md relative overflow-hidden cursor-pointer
                           ${isMax ? 'bg-accent shadow-[0_0_20px_rgba(57,255,20,0.3)]' : 'bg-white/10 group-hover:bg-white/20 transition-colors duration-500'}
                         `}
@@ -117,17 +117,17 @@ export default function ProgressChartSection() {
                         {isMax && (
                           <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent" />
                         )}
-                      </motion.div>
+                      </m.div>
                       
                       {/* Etiqueta X Axis */}
-                      <motion.span 
+                      <m.span 
                         className="text-[10px] md:text-xs text-muted/50 mt-4 uppercase font-medium tracking-wider"
                         initial={reducedMotion ? { opacity: 1 } : { opacity: 0 }}
                         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                         transition={{ duration: 0.5, delay: 0.8 + (index * 0.05) }}
                       >
                         {data.label.replace('Sem ', 'S')}
-                      </motion.span>
+                      </m.span>
                     </div>
                   );
                 })}

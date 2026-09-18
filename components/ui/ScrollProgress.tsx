@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useSpring } from "motion/react";
+import { m, useScroll, useSpring } from "motion/react";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 export default function ScrollProgress() {
@@ -17,7 +17,7 @@ export default function ScrollProgress() {
   if (reducedMotion) return null;
 
   return (
-    <motion.div
+    <m.div
       className="fixed top-0 left-0 right-0 h-[2px] bg-accent origin-left z-[100]"
       style={{ scaleX }}
     />

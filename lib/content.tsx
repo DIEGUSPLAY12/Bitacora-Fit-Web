@@ -22,7 +22,7 @@ function renderSegments(segments: Segment[]): React.ReactNode {
     typeof seg === "string" ? (
       seg
     ) : (
-      <strong key={i} className="text-foreground font-semibold">
+      <strong key={seg.b} className="text-foreground font-semibold">
         {seg.b}
       </strong>
     )
@@ -39,7 +39,7 @@ export function ContentRenderer({ blocks }: ContentRendererProps) {
       {blocks.map((block, i) => {
         if (block.t === "p") {
           return (
-            <p key={i} className="mb-4">
+            <p key={`p-${JSON.stringify(block.s)}`} className="mb-4">
               {renderSegments(block.s)}
             </p>
           );
@@ -47,7 +47,7 @@ export function ContentRenderer({ blocks }: ContentRendererProps) {
         if (block.t === "h2") {
           return (
             <h2
-              key={i}
+              key={`h2-${block.text}`}
               className="font-display text-xl md:text-2xl font-bold text-foreground tracking-tight mt-10 mb-4"
             >
               {block.text}
@@ -56,9 +56,9 @@ export function ContentRenderer({ blocks }: ContentRendererProps) {
         }
         if (block.t === "ul") {
           return (
-            <ul key={i} className="mb-4 pl-6 space-y-2 list-disc">
-              {block.items.map((item, j) => (
-                <li key={j} className="text-muted leading-relaxed">
+            <ul key={`ul-${JSON.stringify(block.items)}`} className="mb-4 pl-6 space-y-2 list-disc">
+              {block.items.map((item) => (
+                <li key={`li-${JSON.stringify(item)}`} className="text-muted leading-relaxed">
                   {renderSegments(item)}
                 </li>
               ))}

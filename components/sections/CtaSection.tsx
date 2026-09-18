@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useMotionTemplate, useMotionValue } from "motion/react";
+import { m, useMotionTemplate, useMotionValue } from "motion/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import DownloadButton from "@/components/ui/DownloadButton";
@@ -46,7 +46,7 @@ export default function CtaSection() {
       >
         {/* Glow Magnético */}
         {!reducedMotion && (
-          <motion.div
+          <m.div
             className="pointer-events-none absolute -inset-px opacity-0 transition duration-500 hover:opacity-100"
             style={{
               background: useMotionTemplate`
@@ -75,7 +75,7 @@ export default function CtaSection() {
 
         <div className="relative z-10 px-6 py-16 md:py-20 flex flex-col items-center text-center">
           
-          <motion.div
+          <m.div
             initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
             whileInView={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -90,9 +90,9 @@ export default function CtaSection() {
               ))}
             </div>
             <span className="text-sm font-medium text-muted uppercase tracking-wider">Valorada con 4.9/5 por atletas reales</span>
-          </motion.div>
+          </m.div>
 
-          <motion.h2 
+          <m.h2 
             initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
             whileInView={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -100,9 +100,9 @@ export default function CtaSection() {
             className="font-display text-3xl md:text-5xl leading-[1.1] tracking-tight font-bold text-foreground max-w-3xl text-balance mb-6"
           >
             Deja de entrenar de memoria. Empieza a medir tu progreso hoy.
-          </motion.h2>
+          </m.h2>
           
-          <motion.p
+          <m.p
             initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
             whileInView={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -110,9 +110,9 @@ export default function CtaSection() {
             className="text-lg md:text-2xl text-muted max-w-2xl text-balance mb-12"
           >
             Bitácora Fit es completamente gratuita, sin anuncios y diseñada por y para gente que se toma en serio el gimnasio.
-          </motion.p>
+          </m.p>
 
-          <motion.div
+          <m.div
             initial={reducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9 }}
             whileInView={reducedMotion ? { opacity: 1 } : { opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -124,7 +124,7 @@ export default function CtaSection() {
             <div className="relative z-10">
               <DownloadButton />
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

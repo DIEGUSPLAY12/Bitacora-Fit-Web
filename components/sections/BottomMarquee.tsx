@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 const ITEMS = [
@@ -16,7 +16,10 @@ export default function BottomMarquee() {
 
   // Duplicamos el array varias veces para asegurar que llene la pantalla holgadamente
   // y la animación al -50% sea un loop perfecto.
-  const multipliedItems = [...ITEMS, ...ITEMS, ...ITEMS, ...ITEMS];
+  const multipliedItems = [...ITEMS, ...ITEMS, ...ITEMS, ...ITEMS].map((msg, i) => ({
+    id: `marquee-${i}-${msg.replace(/\s+/g, '-').substring(0, 10)}`,
+    msg
+  }));
 
   return (
     <section className="w-full py-6 md:py-8 overflow-hidden bg-surface/30 border-t border-white/5 relative z-20">
@@ -24,7 +27,7 @@ export default function BottomMarquee() {
       <div className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-background to-transparent z-10" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-background to-transparent z-10" />
 
-      <motion.div
+      <m.div
         className="flex whitespace-nowrap gap-8 md:gap-16 items-center w-max pl-4"
         animate={reducedMotion ? {} : { x: [0, "-50%"] }}
         transition={{
@@ -33,15 +36,15 @@ export default function BottomMarquee() {
           duration: 40, // Animación lenta y premium
         }}
       >
-        {multipliedItems.map((msg, idx) => (
-          <div key={idx} className="flex items-center gap-8 md:gap-16">
+        {multipliedItems.map((item) => (
+          <div key={item.id} className="flex items-center gap-8 md:gap-16">
             <span className="text-xs md:text-sm uppercase tracking-[0.25em] font-semibold text-accent/80">
-              {msg}
+              {item.msg}
             </span>
             <span className="text-white/10 text-xs">✦</span>
           </div>
         ))}
-      </motion.div>
+      </m.div>
     </section>
   );
 }

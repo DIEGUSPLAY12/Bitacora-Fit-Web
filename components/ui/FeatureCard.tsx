@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionTemplate, useMotionValue } from "motion/react";
+import { m, useMotionTemplate, useMotionValue } from "motion/react";
 import type { ReactNode } from "react";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
@@ -30,7 +30,7 @@ export default function FeatureCard({ icon, title, description, className = "" }
     >
       {/* Glow Magnético */}
       {!reducedMotion && (
-        <motion.div
+        <m.div
           className="pointer-events-none absolute -inset-px rounded-[24px] opacity-0 transition duration-300 group-hover:opacity-100"
           style={{
             background: useMotionTemplate`

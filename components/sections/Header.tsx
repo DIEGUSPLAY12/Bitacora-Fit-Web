@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 import DownloadButton from "@/components/ui/DownloadButton";
 import Brand from "@/components/ui/Brand";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import NavActions from "@/components/ui/NavActions";
 
 const NAV_LINKS = [
   { name: "Funciones", href: "#features" },
@@ -39,8 +40,12 @@ export default function Header() {
     NAV_LINKS.forEach((link) => {
       // Solo observar elementos de la misma página (empiezan por #)
       if (link.href.startsWith("#")) {
-        const el = document.querySelector(link.href);
-        if (el) observer.observe(el);
+        try {
+          const el = document.querySelector(link.href);
+          if (el) observer.observe(el);
+        } catch (e) {
+          // Ignorar selectores inválidos
+        }
       }
     });
 
@@ -52,11 +57,15 @@ export default function Header() {
     if (href.startsWith("/")) return;
     e.preventDefault();
     setIsMobileMenuOpen(false);
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-    } else if (href === "body") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    try {
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      } else if (href === "body") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    } catch (e) {
+      // Si el selector no es válido, fallback
     }
   };
 
@@ -64,7 +73,7 @@ export default function Header() {
     <>
       <header className="fixed top-4 md:top-6 inset-x-4 z-50 flex flex-col items-center pointer-events-none gap-2">
       {/* Desktop & Mobile Pill */}
-      <nav className="pointer-events-auto flex items-center justify-between bg-surface/80 backdrop-blur-xl border border-white/10 rounded-full px-4 py-2 md:py-3 w-full max-w-5xl mx-auto shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-300 relative z-20">
+      <nav className="pointer-events-auto flex items-center justify-between bg-surface/80 backdrop-blur-xl border border-white/10 rounded-full px-4 py-2 md:py-3 w-full max-w-5xl mx-auto shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition duration-300 relative z-20">
         
         {/* Logo */}
         <Link 
@@ -90,7 +99,7 @@ export default function Header() {
                   {link.name}
                 </Link>
                 {!reducedMotion && isActive && (
-                  <motion.div
+                  <m.div
                     layoutId="activeNavIndicator"
                     className="absolute inset-0 bg-accent rounded-full z-0"
                     transition={{ type: "spring", stiffness: 350, damping: 30 }}
@@ -105,27 +114,14 @@ export default function Header() {
         </ul>
 
         {/* Action / Mobile Toggle */}
-        <div className="flex items-center gap-3">
-          <div className="hidden md:block">
-            <DownloadButton compact />
-          </div>
-          
-          <button
-            className="md:hidden p-2 text-foreground rounded-full hover:bg-white/5 transition-colors focus-visible:outline-accent"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-expanded={isMobileMenuOpen}
-            aria-label="Abrir menú de navegación"
-          >
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </div>
+        <NavActions isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
       </nav>
     </header>
 
       {/* Mobile Menu Backdrop */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -140,7 +136,7 @@ export default function Header() {
       {/* Mobile Menu Side Panel */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
+          <m.div
             initial={reducedMotion ? { opacity: 0, x: 20 } : { opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={reducedMotion ? { opacity: 0, x: 20 } : { opacity: 0, x: "100%" }}
@@ -164,7 +160,7 @@ export default function Header() {
               {NAV_LINKS.map((link, idx) => {
                 const isActive = activeSection === link.href.substring(1);
                 return (
-                  <motion.li 
+                  <m.li 
                     key={link.href}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -181,7 +177,7 @@ export default function Header() {
                     >
                       {link.name}
                     </Link>
-                  </motion.li>
+                  </m.li>
                 );
               })}
             </ul>
@@ -190,7 +186,7 @@ export default function Header() {
             <div className="p-6 border-t border-white/5 flex justify-center">
               <DownloadButton />
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 import { BASE_PATH } from "@/lib/constants";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
@@ -135,7 +135,7 @@ export default function Gallery() {
 
             <div className="relative min-h-[140px]">
               <AnimatePresence mode="wait">
-                <motion.div
+                <m.div
                   key={activeIndex}
                   initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -148,18 +148,18 @@ export default function Gallery() {
                   <p className="text-base md:text-lg text-muted leading-relaxed max-w-md mx-auto lg:mx-0">
                     {activeShot.description}
                   </p>
-                </motion.div>
+                </m.div>
               </AnimatePresence>
             </div>
 
             {/* ── Indicadores pill ─────────────────────── */}
             <div className="flex items-center justify-center lg:justify-start gap-2 mt-8">
-              {SCREENSHOTS.map((_, i) => (
+              {SCREENSHOTS.map((shot, i) => (
                 <button
-                  key={i}
+                  key={shot.src}
                   onClick={() => setActiveIndex(i)}
                   className={[
-                    "h-1.5 rounded-full transition-all duration-500 ease-out",
+                    "h-1.5 rounded-full transition duration-500 ease-out",
                     i === activeIndex
                       ? "w-10 bg-accent"
                       : "w-2 bg-white/20 hover:bg-white/40",
@@ -175,7 +175,7 @@ export default function Gallery() {
                 type="button"
                 onClick={handlePrev}
                 aria-label="Captura anterior"
-                className="w-12 h-12 flex items-center justify-center rounded-full bg-surface/80 backdrop-blur-md text-foreground transition-all hover:scale-105 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent border border-white/10"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-surface/80 backdrop-blur-md text-foreground transition hover:scale-105 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent border border-white/10"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
@@ -183,7 +183,7 @@ export default function Gallery() {
                 type="button"
                 onClick={handleNext}
                 aria-label="Captura siguiente"
-                className="w-12 h-12 flex items-center justify-center rounded-full bg-surface/80 backdrop-blur-md text-foreground transition-all hover:scale-105 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent border border-white/10"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-surface/80 backdrop-blur-md text-foreground transition hover:scale-105 hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent border border-white/10"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
@@ -202,7 +202,7 @@ export default function Gallery() {
                 type="button"
                 onClick={handlePrev}
                 aria-label="Captura anterior"
-                className="flex lg:hidden absolute -left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full bg-surface/90 backdrop-blur-md text-foreground transition-all focus-visible:outline-accent shadow-2xl border border-white/10"
+                className="flex lg:hidden absolute -left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full bg-surface/90 backdrop-blur-md text-foreground transition focus-visible:outline-accent shadow-2xl border border-white/10"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
@@ -210,7 +210,7 @@ export default function Gallery() {
                 type="button"
                 onClick={handleNext}
                 aria-label="Captura siguiente"
-                className="flex lg:hidden absolute -right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full bg-surface/90 backdrop-blur-md text-foreground transition-all focus-visible:outline-accent shadow-2xl border border-white/10"
+                className="flex lg:hidden absolute -right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full bg-surface/90 backdrop-blur-md text-foreground transition focus-visible:outline-accent shadow-2xl border border-white/10"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
@@ -219,6 +219,8 @@ export default function Gallery() {
                 className="relative w-full h-[420px] md:h-[550px] flex items-center justify-center outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-[40px] perspective-[1200px]"
                 tabIndex={0}
                 onKeyDown={handleKeyDown}
+                role="region"
+                aria-roledescription="carousel"
                 aria-label="Galería interactiva de capturas de pantalla"
               >
                 <AnimatePresence initial={false}>
@@ -286,7 +288,7 @@ export default function Gallery() {
                     };
 
                     return (
-                      <motion.div
+                      <m.div
                         key={shot.src}
                         initial={false}
                         animate={state}
@@ -323,7 +325,7 @@ export default function Gallery() {
                         {!isCenter && (
                           <div className="absolute inset-0 bg-black/20 pointer-events-none" />
                         )}
-                      </motion.div>
+                      </m.div>
                     );
                   })}
                 </AnimatePresence>

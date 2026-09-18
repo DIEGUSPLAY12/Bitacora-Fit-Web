@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, useInView } from "motion/react";
+import { m, AnimatePresence, useInView } from "motion/react";
 import { BASE_PATH } from "@/lib/constants";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
@@ -103,7 +103,7 @@ export default function HowItWorks() {
                 style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
               >
                 <AnimatePresence mode="wait">
-                  <motion.div
+                  <m.div
                     key={activeStep.id}
                     initial={reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 1.05, filter: "blur(4px)" }}
                     animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
@@ -119,7 +119,7 @@ export default function HowItWorks() {
                       sizes="(max-width: 768px) 100vw, 260px"
                       className="object-cover"
                     />
-                  </motion.div>
+                  </m.div>
                 </AnimatePresence>
                 
                 {/* Reflejo estilo cristal premium */}
@@ -133,7 +133,7 @@ export default function HowItWorks() {
           <div className="lg:hidden fixed inset-0 z-0 flex items-center justify-center opacity-30 pointer-events-none">
              <div className="relative w-full max-w-[280px] aspect-[487/1105] rounded-[36px] border border-white/10 overflow-hidden bg-surface mask-image-bottom">
                 <AnimatePresence mode="wait">
-                  <motion.div
+                  <m.div
                     key={activeStep.id}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -145,9 +145,10 @@ export default function HowItWorks() {
                       src={activeStep.image}
                       alt={activeStep.alt}
                       fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover"
                     />
-                  </motion.div>
+                  </m.div>
                 </AnimatePresence>
              </div>
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
@@ -34,7 +34,7 @@ export default function Comparison() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           
           {/* Tarjeta Problema (Otras apps/Notas) */}
-          <motion.div 
+          <m.div 
             initial={reducedMotion ? { opacity: 1 } : { opacity: 0, x: -20 }}
             whileInView={reducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -57,18 +57,18 @@ export default function Comparison() {
                   "Pierdes tiempo calculando el volumen total",
                   "Te distraes con notificaciones de otras apps sociales",
                   "Dependes de tener buena cobertura en el gimnasio"
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-muted">
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-muted">
                     <span className="text-red-400/50 text-lg leading-none mt-1">×</span>
                     <span className="text-base leading-snug">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Tarjeta Solución (Bitácora Fit) */}
-          <motion.div 
+          <m.div 
             initial={reducedMotion ? { opacity: 1 } : { opacity: 0, x: 20 }}
             whileInView={reducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -91,15 +91,15 @@ export default function Comparison() {
                   "Gráficas automáticas de tu progreso real",
                   "Cero distracciones sociales. Solo tú y el hierro",
                   "Funciona 100% offline sin problemas"
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-foreground">
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-foreground">
                     <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                     <span className="text-base font-medium leading-snug">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-          </motion.div>
+          </m.div>
 
         </div>
       </div>

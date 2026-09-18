@@ -79,7 +79,7 @@ export default function Features() {
                 className={`relative group ${isWide ? "md:col-span-2" : "md:col-span-1"}`}
               >
                 {/* Contenedor plano brutalista */}
-                <div className="relative h-full w-full rounded-[1.5rem] border border-white/10 bg-surface overflow-hidden flex flex-col justify-end p-6 md:p-8 shadow-2xl transition-all duration-500 ease-out motion-safe:group-hover:scale-[0.98] group-hover:bg-surface/80 group-hover:border-white/20">
+                <div className="relative h-full w-full rounded-[1.5rem] border border-white/10 bg-surface overflow-hidden flex flex-col justify-end p-6 md:p-8 shadow-2xl transition duration-500 ease-out motion-safe:group-hover:scale-[0.98] group-hover:bg-surface/80 group-hover:border-white/20">
                     
                     {/* Luces y Efectos de Fondo Específicos */}
                     {index === 0 && (
@@ -102,7 +102,7 @@ export default function Features() {
                     )}
 
                     {index === 3 && (
-                      <div className="absolute top-8 right-8 flex items-end gap-2 opacity-10 group-hover:opacity-30 transition-all duration-700 group-hover:-translate-y-2 pointer-events-none">
+                      <div className="absolute top-8 right-8 flex items-end gap-2 opacity-10 group-hover:opacity-30 transition duration-700 group-hover:-translate-y-2 pointer-events-none">
                         {/* Gráfico de barras abstracto */}
                         <div className="w-6 h-12 bg-white/30 rounded-sm" />
                         <div className="w-6 h-20 bg-white/30 rounded-sm" />

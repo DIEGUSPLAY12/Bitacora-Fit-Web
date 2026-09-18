@@ -55,7 +55,7 @@ export default function BlogPage() {
                   className="group"
                 >
                   {/* Flat card */}
-                  <div className="h-full rounded-[1.5rem] border border-white/10 bg-surface p-6 md:p-8 flex flex-col shadow-lg transition-all duration-500 ease-out motion-safe:group-hover:scale-[0.98] group-hover:bg-surface/80 group-hover:border-white/20">
+                  <div className="h-full rounded-[1.5rem] border border-white/10 bg-surface p-6 md:p-8 flex flex-col shadow-lg transition duration-500 ease-out motion-safe:group-hover:scale-[0.98] group-hover:bg-surface/80 group-hover:border-white/20">
                       {/* Tag + Meta */}
                       <div className="flex items-center gap-3 mb-4">
                         <span

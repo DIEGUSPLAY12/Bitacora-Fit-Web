@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import PageHeader from "@/components/ui/PageHeader";
-import PageHero from "@/components/ui/PageHero";
-import Footer from "@/components/sections/Footer";
 import { ContentRenderer, Block } from "@/lib/content";
+import LegalPageLayout from "@/components/ui/LegalPageLayout";
 
 export const metadata: Metadata = {
   title: "Términos y Condiciones — Bitácora Fit",
@@ -139,34 +137,19 @@ const SECTIONS: Section[] = [
 
 export default function TerminosPage() {
   return (
-    <>
-      <PageHeader />
-      <main>
-        <PageHero tag="Legal" title="Términos y Condiciones" />
-
-        <section className="pb-20 md:pb-32 px-5">
-          <div className="mx-auto max-w-3xl">
-            {/* Last updated */}
-            <p className="text-sm text-muted/60 mb-12 text-center">
-              Última actualización: 8 de agosto de 2026
-            </p>
-
-            <div className="flex flex-col gap-10">
-              {SECTIONS.map((section) => (
-                <div key={section.title}>
-                  <h2 className="font-display text-xl md:text-2xl font-bold text-foreground tracking-tight mb-4">
-                    {section.title}
-                  </h2>
-                  <div className="text-sm md:text-base text-muted leading-relaxed">
-                    <ContentRenderer blocks={section.blocks} />
-                  </div>
-                </div>
-              ))}
+    <LegalPageLayout title="Términos y Condiciones" lastUpdated="8 de agosto de 2026">
+      <div className="flex flex-col gap-10">
+        {SECTIONS.map((section) => (
+          <div key={section.title}>
+            <h2 className="font-display text-xl md:text-2xl font-bold text-foreground tracking-tight mb-4">
+              {section.title}
+            </h2>
+            <div className="text-sm md:text-base text-muted leading-relaxed">
+              <ContentRenderer blocks={section.blocks} />
             </div>
           </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+        ))}
+      </div>
+    </LegalPageLayout>
   );
 }

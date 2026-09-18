@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import DownloadButton from "@/components/ui/DownloadButton";
@@ -104,28 +104,28 @@ export default function Hero() {
           <div className="flex-1 flex flex-col gap-6 relative z-10 text-center md:text-left items-center md:items-start">
             <h1 className="font-display text-[clamp(2.5rem,10vw,4.5rem)] md:text-[clamp(2.5rem,6vw,4rem)] leading-[1.05] tracking-[-0.03em] font-bold text-foreground flex flex-col items-center md:items-start gap-1 text-balance w-full">
               <span className="overflow-hidden block text-center md:text-left">
-                <motion.span
+                <m.span
                   className="block"
                   initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: "100%" }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                 >
                   Registra tus entrenos,
-                </motion.span>
+                </m.span>
               </span>
               <span className="overflow-hidden block text-center md:text-left">
-                <motion.span
+                <m.span
                   className="block text-white/90"
                   initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: "100%" }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 >
                   entrena con criterio
-                </motion.span>
+                </m.span>
               </span>
             </h1>
 
-            <motion.p
+            <m.p
               initial={reducedMotion ? { opacity: 1 } : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.4 }}
@@ -133,9 +133,9 @@ export default function Hero() {
             >
               Apunta peso, series y repeticiones en cada ejercicio y observa tu
               progreso real. Sin estimaciones, sin memoria: datos.
-            </motion.p>
+            </m.p>
 
-            <motion.div
+            <m.div
               initial={reducedMotion ? { opacity: 1, y: 10 } : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
@@ -157,12 +157,12 @@ export default function Hero() {
                   <span className="text-xs font-semibold text-foreground">+10.000 Entrenos</span>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
 
           {/* ── Mockup ────────────────────────────────── */}
           <div className="flex-1 flex justify-center md:justify-end mb-20 md:mb-0" style={{ transformStyle: "preserve-3d" }}>
-            <motion.div 
+            <m.div 
               ref={mockupRef}
               initial={reducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -181,7 +181,7 @@ export default function Hero() {
               
               {/* Glass reflection overlay for premium feel */}
               <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 pointer-events-none" />
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>

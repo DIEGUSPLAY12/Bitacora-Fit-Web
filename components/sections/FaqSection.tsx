@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 import { Plus } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
@@ -58,8 +58,8 @@ export default function FaqSection() {
             const isOpen = openIndex === index;
 
             return (
-              <motion.div
-                key={index}
+              <m.div
+                key={faq.question}
                 initial={false}
                 animate={{
                   backgroundColor: isOpen ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.01)",
@@ -80,7 +80,7 @@ export default function FaqSection() {
                       {faq.question}
                     </span>
                     
-                    <motion.div
+                    <m.div
                       animate={{ 
                         rotate: isOpen ? 45 : 0,
                         backgroundColor: isOpen ? "rgba(57,255,20,0.1)" : "rgba(255,255,255,0.05)",
@@ -90,12 +90,12 @@ export default function FaqSection() {
                       className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full"
                     >
                       <Plus className="w-5 h-5" />
-                    </motion.div>
+                    </m.div>
                   </button>
 
                   <AnimatePresence initial={false}>
                     {isOpen && (
-                      <motion.div
+                      <m.div
                         initial="collapsed"
                         animate="open"
                         exit="collapsed"
@@ -113,10 +113,10 @@ export default function FaqSection() {
                             {faq.answer}
                           </p>
                         </div>
-                      </motion.div>
+                      </m.div>
                     )}
                   </AnimatePresence>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

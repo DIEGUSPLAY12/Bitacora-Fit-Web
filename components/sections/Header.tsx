@@ -80,7 +80,7 @@ export default function Header() {
             const isActive = activeSection === link.href.substring(1);
             return (
               <li key={link.href} className="relative">
-                <a
+                <Link
                   href={link.href}
                   onClick={(e) => handleScrollTo(e, link.href)}
                   className={`relative z-10 px-4 py-2 text-sm font-medium transition-colors block ${
@@ -88,7 +88,7 @@ export default function Header() {
                   }`}
                 >
                   {link.name}
-                </a>
+                </Link>
                 {!reducedMotion && isActive && (
                   <motion.div
                     layoutId="activeNavIndicator"
@@ -170,9 +170,9 @@ export default function Header() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 + idx * 0.05 }}
                   >
-                    <a
+                    <Link
                       href={link.href}
-                      onClick={(e) => handleScrollTo(e, link.href)}
+                      onClick={(e) => handleScrollTo(e as unknown as React.MouseEvent<HTMLAnchorElement>, link.href)}
                       className={`block py-4 text-xl font-bold tracking-tight transition-colors border-b border-white/5 ${
                         isActive 
                           ? "text-accent" 
@@ -180,7 +180,7 @@ export default function Header() {
                       }`}
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   </motion.li>
                 );
               })}

@@ -15,7 +15,7 @@ import PageHeader from "@/components/ui/PageHeader";
 import PageHero from "@/components/ui/PageHero";
 import Footer from "@/components/sections/Footer";
 
-const CONTACT_EMAIL = "contacto@bitacorafit.app";
+const CONTACT_EMAIL = "luismarianog858@gmail.com";
 
 // Clave pública de Web3Forms — segura en el frontend por diseño.
 // No da acceso a la cuenta, solo identifica el endpoint de destino.
